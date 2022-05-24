@@ -74,6 +74,7 @@
     /*END DOES NOT RESET AT DEAL*/
     document.getElementById("playerMoney").innerHTML = playerMoney;
     function showAlert(status, message, type) {
+        document.getElementById("playBts").classList.add("hide");
         if (message === "default") {
             document.getElementById("status").classList.add("hide");
             document.getElementById("status").classList.remove("alert-danger");
@@ -116,7 +117,7 @@
         document.getElementById("dealerTotal").innerHTML = dealerTotal;
         document.getElementById("dealerCards").innerHTML = "";
         document.getElementById("playerCards").innerHTML = "";
-        document.getElementById("playBts").classList.add("hide");
+        //document.getElementById("playBts").classList.add("hide");
         document.getElementById("playerTotal").classList.add("hide");
         document.getElementById("dealerTotal").classList.add("hide");
         /*END RESET*/

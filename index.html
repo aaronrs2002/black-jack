@@ -42,7 +42,7 @@
                 <div class="btn-group form-control" role="group">
                     <button type="button" class="btn btn-primary" alt="hit" onClick="hit()">HIT</button>
                     <button type="button" class="btn btn-primary" alt="stay" onClick="stay()">STAY</button>
-                    <button type="button" class="btn btn-primary" alt="stay" onClick="split()">SPLIT</button>
+                    <button type="button" class="btn btn-primary" alt="split" onClick="split()">SPLIT</button>
                 </div>
             </div>
         </div>
@@ -105,6 +105,7 @@
             }
             document.getElementById("playerMoney").innerHTML = playerMoney;
         }
+        document.querySelector("button[alt='split']").disabled = false;
         return false;
     }
 
@@ -278,6 +279,7 @@
     }
 
     function hit() {
+        document.querySelector("button[alt='split']").disabled = true;
         let aces = [];
         tempCards = [];
         let randomNum = Math.floor(Math.random() * cards.length);

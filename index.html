@@ -31,6 +31,10 @@
             </div>
             <div class="col-md-12" id="playerCards">
             </div>
+            <!--start split-->
+            <div class="col-md-6" id="split0"></div>
+            <div class="col-md-6" id="split1"></div>
+            <!--end split-->
             <div class="col-md-12">
                 <div class="alert alert-secondary hide" id="playerTotal" role="alert"></div>
             </div>
@@ -38,6 +42,7 @@
                 <div class="btn-group form-control" role="group">
                     <button type="button" class="btn btn-primary" alt="hit" onClick="hit()">HIT</button>
                     <button type="button" class="btn btn-primary" alt="stay" onClick="stay()">STAY</button>
+                    <button type="button" class="btn btn-primary" alt="stay" onClick="split()">SPLIT</button>
                 </div>
             </div>
         </div>
@@ -59,6 +64,11 @@
 <script src="js/cards.js"></script>
 <script>
     let tempCards = [];
+    const originalCards = cards;
+    //SPIT CARDS
+    let splitActive = false;
+    let playerTotal0 = 0;
+    let playerTotal1 = 0;
     /*START DEALER VARIABLES*/
     let dealerCards = [];
     let dealerHTML = "";
@@ -67,7 +77,6 @@
     let playerCards = [];
     let playerHTML = "";
     let playerTotal = 0;
-
     /*DOES NOT RESET AT DEAL*/
     let playerMoney = 500;
     let bet = 0;
@@ -84,22 +93,30 @@
             document.getElementById("status").classList.remove("hide");
             document.getElementById("status").classList.add(type);
         }
-        if (status === "win") {
-            playerMoney = (playerMoney + bet);
+        if (status !== "split") {
+            if (status === "win") {
+                playerMoney = (playerMoney + bet);
+            }
+            if (status === "black-jack") {
+                playerMoney = (playerMoney + (bet * 1.5));
+            }
+            if (status === "lose") {
+                playerMoney = (playerMoney - bet);
+            }
+            document.getElementById("playerMoney").innerHTML = playerMoney;
         }
-        if (status === "lose") {
-            playerMoney = (playerMoney - bet);
-        }
-        document.getElementById("playerMoney").innerHTML = playerMoney;
         return false;
     }
 
     function deal(playerBet) {
+        document.querySelector("#split0").innerHTML = "";
+        document.querySelector("#split1").innerHTML = "";
         if (document.querySelectorAll(".dealAmt")) {
             [].forEach.call(document.querySelectorAll(".dealAmt"), function (e) {
                 e.classList.remove("active");
             })
         }
+        cards = originalCards;
         document.querySelector(".dealAmt[alt='" + playerBet + "']").classList.add("active");
         bet = playerBet;
         /*START RESET*/
@@ -117,7 +134,6 @@
         document.getElementById("dealerTotal").innerHTML = dealerTotal;
         document.getElementById("dealerCards").innerHTML = "";
         document.getElementById("playerCards").innerHTML = "";
-        //document.getElementById("playBts").classList.add("hide");
         document.getElementById("playerTotal").classList.add("hide");
         document.getElementById("dealerTotal").classList.add("hide");
         /*END RESET*/
@@ -150,6 +166,9 @@
             playerHTML = playerHTML + "<div data-player='" + i + "' class='card " + playerCards[i].title + "'></div>";
         }
         playerTotal = (Number(playerCards[0].value) + Number(playerCards[1].value));
+        if (playerTotal === 21) {
+            showAlert("black-jack", "BLACK JACK! ", "alert-success");
+        }
         document.getElementById("playerTotal").innerHTML = playerTotal;
         document.getElementById("dealerCards").innerHTML = dealerHTML;
         document.getElementById("playerCards").innerHTML = playerHTML;
@@ -158,40 +177,7 @@
         document.getElementById("dealerTotal").classList.remove("hide");
     }
 
-    function hit() {
-        let aces = [];
-        tempCards = [];
-        let randomNum = Math.floor(Math.random() * cards.length);
-        playerCards.push(cards[randomNum]);
-        playerHTML = playerHTML + "<div data-player='" + playerCards.length + "' class='card " + cards[randomNum].title + "'></div>";
-        document.getElementById("playerCards").innerHTML = playerHTML;
-        playerTotal = (Number(playerTotal) + Number(cards[randomNum].value));
-        document.getElementById("playerTotal").innerHTML = playerTotal;
-        for (let i = 0; i < cards.length; i++) {
-            if (dealerCards.indexOf(cards[i]) === -1 && playerCards.indexOf(cards[i]) === -1) {
-                tempCards.push(cards[i]);
-            }
-        }
-        cards = tempCards;
-        for (let i = 0; i < playerCards.length; i++) {
-            if (playerCards[i].title.indexOf("ace-") !== -1) {
-                aces.push(playerCards[i].title);
-            }
-        }
-        if (playerTotal > 21) {
-            if (aces.length > 0) {
-                playerTotal = (playerTotal - (10 * aces.length));
-                console.log("How many Aces? " + aces.length);
-            }
-            document.getElementById("playerTotal").innerHTML = playerTotal;
-            if (playerTotal > 21) {
-                document.getElementById("playerTotal").innerHTML = playerTotal;
-                showAlert("lose", "YOU BUSTED. DEALER WON!", "alert-danger");
-            }
-        }
-    }
-
-    function stay() {
+    function stay() {    //START STAY()
         let tempMessage = "DEFAULT";
         showAlert("default", "DEFAULT", "hide");
         dealerHTML = "";
@@ -206,7 +192,6 @@
             dealerTotal = (Number(dealerTotal) + Number(dealerCards[i].value));
         }
         document.querySelector("#dealerTotal").innerHTML = dealerTotal;
-
         function addcard() {
             tempCards = [];
             let randomNum = Math.floor(Math.random() * cards.length);
@@ -222,44 +207,130 @@
             }
             cards = tempCards;
         }
-        while (dealerTotal <= 16 && dealerTotal < playerTotal) {
-            console.log("DEALER HITS - dealer total: " + dealerTotal + " - playerTotal: " + playerTotal);
-            addcard();
-        }
-        console.log("DEAlER STAYS - dealer total: " + dealerTotal + " - playerTotal: " + playerTotal);
-        if (dealerTotal <= 21 && dealerTotal > playerTotal) {
-            showAlert("lose", "DEALER WON!", "alert-danger");
 
-        }
-        if (dealerTotal <= 21 && dealerTotal < playerTotal) {
-            showAlert("win", "YOU WON!", "alert-success");
-        }
-        /*   if (dealerTotal <= 21 && dealerTotal < playerTotal && playerTotal <= 21) {
+        if (splitActive === true) {
+            let splitArr = [Number(playerTotal0), Number(playerTotal1)];
+            while (dealerTotal <= 16 && dealerTotal <= 21) {
+                addcard();
+            }
+            let splitMessage = "";
+            if (dealerTotal > 21) {
+                showAlert("split", "YOU WON. DEALER BUSTED!", "alert-success");
+                playerMoney = (playerMoney + bet + bet);
+            } else {
+                for (let i = 0; i < splitArr.length; i++) {
+                    if (dealerTotal < splitArr[i]) {
+                        playerMoney = (playerMoney += bet);
+                        splitMessage = splitMessage + "YOU WON HAND " + (i + 1) + ". ";
+                    }
+                    if (dealerTotal > splitArr[i]) {
+                        playerMoney = (playerMoney -= bet);
+                        splitMessage = splitMessage + "YOU LOST HAND " + (i + 1) + ". ";
+                    }
+                    if (dealerTotal === splitArr[i]) {
+                        splitMessage = splitMessage + "YOU PUSHED HAND " + (i + 1) + ". ";
+                    }
+                    if (splitArr[i] === 21) {
+                        playerMoney = (playerMoney += (bet * .5))
+                    }
+                }
+                showAlert("split", splitMessage, "alert-primary");
+                document.getElementById("playerMoney").innerHTML = playerMoney;
+            }
+        } else {
+            while (dealerTotal <= 16 && dealerTotal < playerTotal) {
+                addcard();
+            }
+            if (dealerTotal <= 21 && dealerTotal > playerTotal) {
+                showAlert("lose", "DEALER WON!", "alert-danger");
+            }
+            if (dealerTotal <= 21 && dealerTotal < playerTotal) {
                 showAlert("win", "YOU WON!", "alert-success");
-            }*/
-        if (dealerTotal <= 21 && dealerTotal === playerTotal) {
-            showAlert("default", "PUSH!", "alert-info");
-        }
+            }
+            if (dealerTotal <= 21 && dealerTotal === playerTotal) {
+                showAlert("default", "PUSH!", "alert-info");
+            }
+            let aces = [];
+            if (dealerTotal > 21) {
+                for (let i = 0; i < dealerCards.length; i++) {
+                    if (dealerCards[i].title.indexOf("ace-") !== -1) {
+                        aces.push(10);
+                    }
+                }
+                if (playerTotal > 21) {
+                    console.log("aces.length: " + aces.length);
+                    for (let j = 0; j < aces.length; j++) {
+                        while (dealerTotal > 21 && aces[j] === 10) {
+                            dealerTotal = (dealerTotal - Number(aces[j]));
+                            aces[j] = 0;
+                        }
+                    }
+                    document.getElementById("dealerTotal").innerHTML = dealerTotal;
+                    if (dealerTotal > 21) {
+                        document.getElementById("dealerTotal").innerHTML = dealerTotal;
+                        showAlert("lose", "YOU BUSTED. DEALER WON!", "alert-danger");
+                    }
+                }
+                showAlert("win", "DEALER BUSTED. YOU WON!", "alert-success");
+            }
+        }//end if/else
+        splitActive = false;
+    }
+
+    function hit() {
         let aces = [];
-        if (dealerTotal > 21) {
-            for (let i = 0; i < dealerCards.length; i++) {
-                if (dealerCards[i].title.indexOf("ace-") !== -1) {
-                    aces.push(dealerCards[i].title);
+        tempCards = [];
+        let randomNum = Math.floor(Math.random() * cards.length);
+        playerCards.push(cards[randomNum]);
+        playerHTML = playerHTML + "<div data-player='" + playerCards.length + "' class='card " + cards[randomNum].title + "'></div>";
+        if (splitActive === false) {
+            document.getElementById("playerCards").innerHTML = playerHTML;
+            playerTotal = (Number(playerTotal) + Number(cards[randomNum].value));
+            document.getElementById("playerTotal").innerHTML = playerTotal;
+            for (let i = 0; i < cards.length; i++) {
+                if (dealerCards.indexOf(cards[i]) === -1 && playerCards.indexOf(cards[i]) === -1) {
+                    tempCards.push(cards[i]);
+                }
+            }
+            cards = tempCards;
+            for (let i = 0; i < playerCards.length; i++) {
+                if (playerCards[i].title.indexOf("ace-") !== -1) {
+                    aces.push(10);
                 }
             }
             if (playerTotal > 21) {
                 if (aces.length > 0) {
-                    dealerTotal = (dealerTotal - (10 * aces.length));
-                    console.log("How many Aces? " + aces.length);
+                    for (let j = 0; j < aces.length; j++) {
+                        while (playerTotal > 21 && aces[j] === 10) {
+                            playerTotal = (playerTotal - Number(aces[j]));
+                            aces[j] = 0;
+                        }
+                    }
                 }
-                document.getElementById("dealerTotal").innerHTML = dealerTotal;
-                if (dealerTotal > 21) {
-                    document.getElementById("dealerTotal").innerHTML = dealerTotal;
+                document.getElementById("playerTotal").innerHTML = playerTotal;
+                if (playerTotal > 21) {
+                    document.getElementById("playerTotal").innerHTML = playerTotal;
                     showAlert("lose", "YOU BUSTED. DEALER WON!", "alert-danger");
                 }
             }
-            showAlert("win", "DEALER BUSTED. YOU WON!", "alert-success");
+        } else {
+            let preHTML0 = document.getElementById("split0").innerHTML;
+            document.getElementById("split0").innerHTML = preHTML0 + "<div data-player='1' class='card " + cards[randomNum].title + "'></div>";
+            playerTotal0 = playerCards[0].value + Number(cards[randomNum].value);
+            let preHTML1 = document.getElementById("split1").innerHTML;
+            document.getElementById("split1").innerHTML = preHTML1 + "<div data-player='1' class='card " + cards[randomNum].title + "'></div>";
+            playerTotal1 = playerCards[1].value + Number(cards[randomNum].value);
+            document.getElementById("playerTotal").innerHTML = playerTotal0 + " - " + playerTotal1;
+            stay();
         }
+    }
+
+    function split() {
+        splitActive = true;
+        document.getElementById("playerCards").innerHTML = "";
+        document.getElementById("split0").innerHTML = "<div data-player='0' class='card " + playerCards[0].title + "'></div>";
+        document.getElementById("split1").innerHTML = "<div data-player='0' class='card " + playerCards[1].title + "'></div>";
+        hit();
     }
 </script>
 

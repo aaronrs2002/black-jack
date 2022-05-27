@@ -279,15 +279,7 @@
             while (dealerTotal <= 16 && dealerTotal <= 21) {
                 addcard();
             }
-            if (dealerTotal <= 21 && dealerTotal > playerTotal) {
-                showAlert("lose", "DEALER WON!", "alert-danger");
-            }
-            if (dealerTotal <= 21 && dealerTotal < playerTotal) {
-                showAlert("win", "YOU WON!", "alert-success");
-            }
-            if (dealerTotal <= 21 && dealerTotal === playerTotal) {
-                showAlert("default", "PUSH!", "alert-info");
-            }
+
             let aces = [];
             if (dealerTotal > 21) {
                 for (let i = 0; i < dealerCards.length; i++) {
@@ -295,7 +287,7 @@
                         aces.push(10);
                     }
                 }
-                if (playerTotal > 21) {
+                if (dealerTotal > 21) {
                     console.log("aces.length: " + aces.length);
                     for (let j = 0; j < aces.length; j++) {
                         while (dealerTotal > 21 && aces[j] === 10) {
@@ -306,10 +298,19 @@
                     document.getElementById("dealerTotal").innerHTML = dealerTotal;
                     if (dealerTotal > 21) {
                         document.getElementById("dealerTotal").innerHTML = dealerTotal;
-                        showAlert("lose", "YOU BUSTED. DEALER WON!", "alert-danger");
+                        showAlert("win", "DEALER BUSTED. YOU WON!", "alert-success");
                     }
                 }
-                showAlert("win", "DEALER BUSTED. YOU WON!", "alert-success");
+                // showAlert("win", "DEALER BUSTED. YOU WON!", "alert-success");
+            }
+            if (dealerTotal <= 21 && dealerTotal > playerTotal) {
+                showAlert("lose", "DEALER WON!", "alert-danger");
+            }
+            if (dealerTotal <= 21 && dealerTotal < playerTotal) {
+                showAlert("win", "YOU WON!", "alert-success");
+            }
+            if (dealerTotal <= 21 && dealerTotal === playerTotal) {
+                showAlert("default", "PUSH!", "alert-info");
             }
         }//end if/else
         splitActive = false;

@@ -185,11 +185,11 @@
         cards = tempCards;
 
         for (let i = 0; i < 2; i++) {
-            let hiddenCard = "";
             if (i === 0) {
-                hiddenCard = "hiddenDealerCard"
+                dealerHTML = dealerHTML + "<div data-dealer='" + i + "' class='card  hiddenDealerCard'></div>";
+            } else {
+                dealerHTML = dealerHTML + "<div data-dealer='" + i + "' class='card " + dealerCards[i].title + "'></div>";
             }
-            dealerHTML = dealerHTML + "<div data-dealer='" + i + "' class='card " + dealerCards[i].title + " " + hiddenCard + "'></div>";
             dealerTotal = dealerCards[1].value;
             document.getElementById("dealerTotal").innerHTML = dealerTotal;
         }
@@ -207,7 +207,6 @@
         } else {
             document.getElementById("playBts").classList.remove("hide");
         }
-
         document.getElementById("playerTotal").innerHTML = playerTotal;
         document.getElementById("dealerCards").innerHTML = dealerHTML;
         document.getElementById("playerCards").innerHTML = playerHTML;

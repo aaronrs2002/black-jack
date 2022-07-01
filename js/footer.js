@@ -9,5 +9,3 @@ for (let i = 0; i < socialMedia.length; i++) {
     socialHTML = socialHTML + "<a class='p-2' href='" + socialMedia[i].link + "' target='_blank' title='" + socialMedia[i].link + "' ><i class='" + socialMedia[i].theClass + "' ></i></a>";
 }
 document.querySelector("#socialList").innerHTML = socialHTML;
-const date = new Date();
-document.querySelector("#yr").innerHTML = date.getFullYear();

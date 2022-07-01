@@ -25,6 +25,19 @@ body:after {
 
 }
 
+
+/*START FOOTER*/
+footer {
+    box-shadow: 0 -4px 3px rgb(0 0 0 / 8%);
+
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+    text-align: center;
+}
+
+
 h1,
 h2,
 h3,

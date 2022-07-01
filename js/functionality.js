@@ -36,7 +36,6 @@ let playerTotal = 0;
 let playerMoney = 500;
 let bet = 0;
 /*END DOES NOT RESET AT DEAL*/
-
 function enableBts() {
     /*forEach was not working*/
     document.querySelector("[alt='hit-split0']").disabled = false;
@@ -69,11 +68,8 @@ function showAlert(status, message, type) {
         document.getElementById("playerMoney").innerHTML = playerMoney;
     }
     document.querySelector("button[alt='split']").disabled = false;
-
     document.getElementById("splitPlayBts").classList.add("hide");
-
     let splitArr = [0, 0];
-    //splitActive = false;
     enableBts();
     return false;
 }
@@ -97,6 +93,16 @@ function checkAces(cardObj) {
     return tempTotal;
 }
 
+function removeCards(dealerCards, playerCards) {
+    tempCards = [];
+    for (let i = 0; i < cards.length; i++) {
+        if (dealerCards.indexOf(cards[i]) === -1 && playerCards.indexOf(cards[i]) === -1) {
+            tempCards.push(cards[i]);
+        }
+    }
+    cards = tempCards;
+}
+
 function deal(playerBet) {
     enableBts();
     splitActive = false;
@@ -114,7 +120,6 @@ function deal(playerBet) {
     document.querySelector(".dealAmt[alt='" + playerBet + "']").classList.add("active");
     bet = playerBet;
     /*START RESET*/
-    tempCards = [];
     /*START DEALER VARIABLES*/
     dealerCards = [];
     dealerHTML = "";
@@ -140,15 +145,10 @@ function deal(playerBet) {
             }
         }
     }
+
     dealerCards = [randNumsArr[1], randNumsArr[3]];
     playerCards = [randNumsArr[2], randNumsArr[4]];
-
-    for (let i = 0; i < cards.length; i++) {
-        if (randNumsArr.indexOf(cards[i]) === -1) {
-            tempCards.push(cards[i]);
-        }
-    }
-    cards = tempCards;
+    removeCards(dealerCards, playerCards);
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             dealerHTML = dealerHTML + "<div data-dealer='" + i + "' class='card  hiddenDealerCard'></div>";
@@ -202,27 +202,23 @@ function stay(whichHand) {    //START STAY()
     }
 
     function addcard() {
-        tempCards = [];
+        //  tempCards = [];
         let randomNum = Math.floor(Math.random() * cards.length);
         dealerCards.push(cards[randomNum]);
         dealerHTML = dealerHTML + "<div data-dealer='" + dealerCards.length + "' class='card " + cards[randomNum].title + "'></div>";
         document.getElementById("dealerCards").innerHTML = dealerHTML;
         dealerTotal = (Number(dealerTotal) + Number(cards[randomNum].value));
         document.getElementById("dealerTotal").innerHTML = dealerTotal;
-        for (let i = 0; i < cards.length; i++) {
-            if (dealerCards.indexOf(cards[i]) === -1 && playerCards.indexOf(cards[i]) === -1) {
-                tempCards.push(cards[i]);
-            }
-        }
-        cards = tempCards;
+        removeCards(dealerCards, playerCards);
+        dealerTotal = checkAces(dealerCards);
     }
     if (splitActive === true && confirmations.length === 2) {
-
-
         let splitArr = [Number(playerTotal0), Number(playerTotal1)];
+        dealerTotal = checkAces(dealerCards);
         while (dealerTotal <= 16 && dealerTotal <= 21) {
             addcard();
         }
+        console.log("dealerTotal: " + dealerTotal + " - checkAces(dealerCards): " + checkAces(dealerCards));
         let splitMessage = "";
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] <= 21) {
             showAlert("split", "YOU WON. DEALER BUSTED!", "alert-success");
@@ -252,7 +248,6 @@ function stay(whichHand) {    //START STAY()
                 if (dealerTotal === splitArr[i] && splitArr[i] <= 21) {
                     splitMessage = splitMessage + "YOU PUSHED HAND " + (i + 1) + ". ";
                 }
-                console.log("splitArr: " + splitArr);
                 if (splitArr[i] === 21) {
                     playerMoney = (playerMoney += (bet * .5))
                 }
@@ -260,14 +255,13 @@ function stay(whichHand) {    //START STAY()
             showAlert("split", splitMessage, "alert-primary");
             document.getElementById("playerMoney").innerHTML = playerMoney;
         }
-
-        console.log("splitActive: " + splitActive + " should eval split here!")
     }
     if (splitActive === false) {
+        dealerTotal = Number(checkAces(dealerCards));
         while (dealerTotal <= 16 && dealerTotal <= 21) {
             addcard();
         }
-        dealerTotal = Number(checkAces(dealerCards));
+
         if (dealerTotal > 21) {
             if (dealerTotal < 17) {
                 addcard();
@@ -286,14 +280,12 @@ function stay(whichHand) {    //START STAY()
             showAlert("default", "PUSH!", "alert-info");
         }
         document.getElementById("dealerTotal").innerHTML = dealerTotal;
-        console.log("splitActive: " + splitActive + " SHOULD NOT BE HERE!")
     }//end if/else
 }
 
 function hit(whichHand) {
     document.querySelector("button[alt='split']").disabled = true;
     let aces = [];
-    tempCards = [];
     if (splitActive === false) {
         let randomNum = Math.floor(Math.random() * cards.length);
         playerCards.push(cards[randomNum]);
@@ -301,32 +293,16 @@ function hit(whichHand) {
         document.getElementById("playerCards").innerHTML = playerHTML;
         playerTotal = (Number(playerTotal) + Number(cards[randomNum].value));
         document.getElementById("playerTotal").innerHTML = playerTotal;
-        for (let i = 0; i < cards.length; i++) {
-            if (dealerCards.indexOf(cards[i]) === -1 && playerCards.indexOf(cards[i]) === -1) {
-                tempCards.push(cards[i]);
-            }
-        }
-        cards = tempCards;
-        for (let i = 0; i < playerCards.length; i++) {
-            if (playerCards[i].title.indexOf("ace-") !== -1) {
-                aces.push(10);
-            }
-        }
+        removeCards(dealerCards, playerCards);
+        playerTotal = checkAces(playerCards);
+
         if (playerTotal > 21) {
-            console.log("aces.length: " + aces.length);
-            if (aces.length > 0) {
-                for (let j = 0; j < aces.length; j++) {
-                    while (playerTotal > 21 && aces[j] === 10) {
-                        playerTotal = (playerTotal -= 10);
-                        console.log("playerTotal: " + playerTotal);
-                        aces[j] = 0;
-                    }
-                } document.getElementById("playerTotal").innerHTML = playerTotal;
-            } else {
-                document.getElementById("playerTotal").innerHTML = playerTotal;
-                showAlert("lose", "YOU BUSTED. DEALER WON!", "alert-danger");
-            }
+            document.getElementById("playerTotal").innerHTML = playerTotal;
+            showAlert("lose", "YOU BUSTED. DEALER WON!", "alert-danger");
+        } else {
+            document.getElementById("playerTotal").innerHTML = playerTotal;
         }
+
     } else {
         if (whichHand === "startSplit") {
             const tempNum0 = Math.floor(Math.random() * cards.length);
@@ -336,7 +312,6 @@ function hit(whichHand) {
             splitCards0.push(cards[tempNum0]);
             playerTotal0 = playerCards[0].value + Number(cards[tempNum0].value);
             playerTotal0 = checkAces([playerCards[0], cards[tempNum0]]);
-
             let preHTML1 = document.getElementById("split1").innerHTML;
             document.getElementById("split1").innerHTML = preHTML1 + "<div data-player='1' class='card " + cards[tempNum1].title + "'></div>";
             playerTotal1 = playerCards[1].value + Number(cards[tempNum1].value);
@@ -351,8 +326,8 @@ function hit(whichHand) {
             let tempNew = split0Html + "<div data-player='1' class='card " + cards[tempRandomCard].title + "'></div>";
             splitCards0.push(cards[tempRandomCard]);
             document.getElementById("split0").innerHTML = tempNew;
-            ///YOU WILL NEED TO TAKE OUT A CARD HERE
             playerTotal0 = checkAces(splitCards0);
+            removeCards(dealerCards, splitCards0);
             splitArr[0] = playerTotal0;
             document.getElementById("playerTotal").innerHTML = playerTotal0 + " - " + playerTotal1;
             if (playerTotal0 > 21) {
@@ -367,8 +342,8 @@ function hit(whichHand) {
             let tepNew = split1Html + "<div data-player='1' class='card " + cards[tempRandomCard].title + "'></div>";
             splitCards1.push(cards[tempRandomCard]);
             document.getElementById("split1").innerHTML = tepNew;
-            ///YOU WILL NEED TO TAKE OUT A CARD HERE
             playerTotal1 = checkAces(splitCards1);
+            removeCards(dealerCards, splitCards1);
             splitArr[1] = playerTotal1;
             document.getElementById("playerTotal").innerHTML = playerTotal0 + " - " + playerTotal1;
             if (playerTotal1 > 21) {

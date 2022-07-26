@@ -37,6 +37,11 @@ footer {
     text-align: center;
 }
 
+#socialList a i {
+    font-size: 1.5rem;
+
+}
+
 .btn-group.block {
     width: 100%;
     padding: 0px;

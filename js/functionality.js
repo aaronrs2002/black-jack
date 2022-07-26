@@ -286,6 +286,9 @@ function hit(whichHand) {
             document.getElementById("playerTotal").innerHTML = playerTotal;
             showAlert("lose", "YOU BUSTED. DEALER WON!", "alert-danger");
         } else {
+            if (whichHand === "oneHitOnly") {
+                stay("default");
+            }
             document.getElementById("playerTotal").innerHTML = playerTotal;
         }
 
@@ -352,4 +355,9 @@ function split() {
     document.getElementById("split1").innerHTML = "<div data-player='0' class='card " + playerCards[1].title + "'></div>";
     splitCards1.push(playerCards[1])
     hit("startSplit");
+}
+
+function doubleD() {
+    bet = bet + bet;
+    hit("oneHitOnly");
 }

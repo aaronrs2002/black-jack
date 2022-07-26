@@ -1,18 +1,4 @@
-//START THEMES
-if (localStorage.getItem("theme")) {
-    document.getElementById("themedStyle").setAttribute("href", localStorage.getItem("theme"));
-}
-let themeOptions = "<option value='css/bootstrap.min.css'>Select Theme</option>";
-for (let i = 0; i < themesList.length; i++) {
-    themeOptions = themeOptions + "<option value='" + themesList[i] + "'>" + themesList[i].substring(25, themesList[i].lastIndexOf("/")) + "</option>";
-}
-document.getElementById("themes").innerHTML = themeOptions;
-function changeTheme() {
-    let whichTheme = document.getElementById("themes").value;
-    document.getElementById("themedStyle").setAttribute("href", whichTheme);
-    localStorage.setItem("theme", whichTheme);
-}
-//END THEMES
+
 let tempCards = [];
 localStorage.setItem("cards", JSON.stringify(cards));
 const originalCards = cards;

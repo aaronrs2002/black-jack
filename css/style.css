@@ -39,8 +39,10 @@ footer {
 
 #socialList a i {
     font-size: 1.5rem;
+    padding: 12px 10px;
 
 }
+
 
 .btn-group.block {
     width: 100%;
@@ -362,3 +364,12 @@ h5 {
     background-color: firebrick;
 
 }
+
+@media (max-width: 767px) {
+    #socialList a i {
+        padding: 12px 10px 25px 10px;
+
+    }
+}
+
+/*end 767*/

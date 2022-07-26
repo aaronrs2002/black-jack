@@ -1,10 +1,12 @@
-let audio = true;
+let audio = false;
 const hitSound = 'sounds/static_sounds_swish.m4a';
 const winSound = 'sounds/static_sounds_cash.mp3';
 const lossSound = 'sounds/static_sounds_aww.mp3';
 function playSound(whichSound) {
     if (audio === true) {
         document.getElementById('audio').innerHTML = "<audio autoplay><source src='" + whichSound + "'></audio>";
+    } else {
+        document.getElementById('audio').innerHTML = "";
     }
 }
 

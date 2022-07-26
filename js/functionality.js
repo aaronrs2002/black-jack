@@ -1,3 +1,23 @@
+let audio = true;
+const hitSound = 'sounds/static_sounds_swish.m4a';
+const winSound = 'sounds/static_sounds_cash.mp3';
+const lossSound = 'sounds/static_sounds_aww.mp3';
+function playSound(whichSound) {
+    if (audio === true) {
+        document.getElementById('audio').innerHTML = "<audio autoplay><source src='" + whichSound + "'></audio>";
+    }
+}
+
+function updateAudio() {
+    if (audio === false) {
+        audio = true;
+        document.querySelector("i[data-sound]").dataset.sound = true;
+    } else {
+        audio = false;
+        document.querySelector("i[data-sound]").dataset.sound = false;
+    }
+}
+//end sounds
 
 let tempCards = [];
 localStorage.setItem("cards", JSON.stringify(cards));
@@ -44,12 +64,15 @@ function showAlert(status, message, type) {
     if (status !== "split") {
         if (status === "win") {
             playerMoney = (playerMoney + bet);
+            playSound(winSound);
         }
         if (status === "black-jack") {
             playerMoney = (playerMoney + (bet * 1.5));
+            playSound(winSound);
         }
         if (status === "lose") {
             playerMoney = (playerMoney - bet);
+            playSound(lossSound);
         }
         document.getElementById("playerMoney").innerHTML = playerMoney;
     }
@@ -271,6 +294,7 @@ function stay(whichHand) {    //START STAY()
 }
 
 function hit(whichHand) {
+    playSound(hitSound);
     document.querySelector("button[alt='split']").disabled = true;
     document.querySelector("button[alt='doubleD']").disabled = true;
     let aces = [];

@@ -54,6 +54,7 @@ function showAlert(status, message, type) {
         document.getElementById("playerMoney").innerHTML = playerMoney;
     }
     document.querySelector("button[alt='split']").disabled = false;
+    document.querySelector("button[alt='doubleD']").disabled = false;
     document.getElementById("splitPlayBts").classList.add("hide");
     let splitArr = [0, 0];
     enableBts();
@@ -271,6 +272,7 @@ function stay(whichHand) {    //START STAY()
 
 function hit(whichHand) {
     document.querySelector("button[alt='split']").disabled = true;
+    document.querySelector("button[alt='doubleD']").disabled = true;
     let aces = [];
     if (splitActive === false) {
         let randomNum = Math.floor(Math.random() * cards.length);

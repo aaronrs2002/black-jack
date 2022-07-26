@@ -25,6 +25,20 @@ body:after {
 
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+
+
+[data-sound='true'] {
+    color: green;
+}
+
+[data-sound='false'] {
+    color: red;
+}
+
 
 /*START FOOTER*/
 footer {
@@ -36,6 +50,7 @@ footer {
     z-index: 5;
     text-align: center;
 }
+
 
 #socialList a i {
     font-size: 1.5rem;

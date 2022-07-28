@@ -14,8 +14,8 @@ for (let i = 0; i < socialMedia.length; i++) {
 document.querySelector("#socialList").innerHTML = socialHTML;
 
 //START GAMES
-const gameLinks = [{ link: "https://mechanized-aesthetics.net/TEST/black-jack/index.html", game: "Black Jack" },
-{ link: "https://mechanized-aesthetics.net/TEST/dice/index.html", game: "Craps" }
+const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/", game: "Black Jack" },
+{ link: "https://aaronrs2002.github.io/craps/", game: "Craps" }
 ];
 let gameHTML = "";
 for (let i = 0; i < gameLinks.length; i++) {

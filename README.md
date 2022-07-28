@@ -1,4 +1,8 @@
 # black-jack
+
+gitHub is hosting tis game here: https://aaronrs2002.github.io/black-jack/
+
+
 Vanilla JavaScript BlackJack
 
 navigate to desired directory:

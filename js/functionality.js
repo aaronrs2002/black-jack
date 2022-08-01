@@ -76,7 +76,8 @@ function showAlert(status, message, type) {
             playerMoney = (playerMoney - bet);
             playSound(lossSound);
         }
-        document.getElementById("playerMoney").innerHTML = playerMoney;
+        document.getElementById("playerMoney").innerHTML = "Balance: $" + playerMoney;
+        document.querySelector("#playerMoney").innerHTML = "Balance: $" + playerMoney;/*SAFARI BUG NEEDS BOTH*/
     }
     document.querySelector("button[alt='split']").disabled = false;
     document.querySelector("button[alt='doubleD']").disabled = false;
@@ -123,10 +124,11 @@ function deal(playerBet) {
     confirmations = [];
     document.querySelector("#split0").innerHTML = "";
     document.querySelector("#split1").innerHTML = "";
-    if (document.querySelectorAll(".dealAmt")) {
-        [].forEach.call(document.querySelectorAll(".dealAmt"), function (e) {
-            e.classList.remove("active");
-        })
+    if (document.querySelectorAll('.dealAmt')) {
+        [].forEach.call(document.querySelectorAll('.dealAmt'), function (e) {
+            e.classList.remove('active');
+            console.log('remove active here.');
+        });
     }
     cards = JSON.parse(localStorage.getItem("cards"));
     document.querySelector(".dealAmt[alt='" + playerBet + "']").classList.add("active");
@@ -265,7 +267,8 @@ function stay(whichHand) {    //START STAY()
                 }
             }
             showAlert("split", splitMessage, "alert-primary");
-            document.getElementById("playerMoney").innerHTML = playerMoney;
+            document.getElementById("playerMoney").innerHTML = "Balance: $" + playerMoney;
+            document.querySelector("#playerMoney").innerHTML = "Balance: $" + playerMoney;/*SAFARI BUG NEEDS BOTH*/
         }
     }
     if (splitActive === false) {

@@ -14,8 +14,10 @@ for (let i = 0; i < socialMedia.length; i++) {
 document.querySelector("#socialList").innerHTML = socialHTML;
 
 //START GAMES
-const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/", game: "Black Jack" },
-{ link: "https://aaronrs2002.github.io/craps/", game: "Craps" }
+const gameLinks = [
+{ link: "https://aaronrs2002.github.io/black-jack/", game: "Black Jack" },
+{ link: "https://aaronrs2002.github.io/craps/", game: "Craps" },
+{link:"https://aaronrs2002.github.io/javascript-slot-machine/index.html", game:"Slots"
 ];
 let gameHTML = "";
 for (let i = 0; i < gameLinks.length; i++) {

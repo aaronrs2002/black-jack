@@ -82,9 +82,7 @@ let themeVal = {};
     });
 
 if (localStorage.getItem("theme")) {
-    setGameLinks(localStorage.getItem("theme"));
-} else {
-    setGameLinks(themesList[14].substring(25, themesList[14].length));
+    setGameLinks(localStorage.getItem("theme").substring(25, localStorage.getItem("theme").length));
 }
 
 //END THEMES

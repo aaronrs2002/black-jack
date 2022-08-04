@@ -1,4 +1,4 @@
-const themesList = [
+/*const themesList = [
     "https://bootswatch.com/5/slate/bootstrap.css",
     "https://bootswatch.com/5/cerulean/bootstrap.css",
     "https://bootswatch.com/5/darkly/bootstrap.css",
@@ -20,14 +20,15 @@ const themesList = [
     "https://bootswatch.com/5/sketchy/bootstrap.css",
     "https://bootswatch.com/5/spacelab/bootstrap.css",
     "https://bootswatch.com/5/yeti/bootstrap.css",
-];
+];*/
+
+const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
 
 let chosenTheme;
 //START GAME LINKS
 const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", game: "Black Jack" },
 { link: "https://aaronrs2002.github.io/craps/?theme=", game: "Craps" },
 { link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }];
-
 
 function setGameLinks(themePass) {
     let gameHTML = "";
@@ -37,16 +38,7 @@ function setGameLinks(themePass) {
     document.querySelector("#gameLinks").innerHTML = gameHTML;
 }
 
-
-
-
 //START THEMES
-/*if (localStorage.getItem("theme")) {
-    document.getElementById("themedStyle").setAttribute("href", localStorage.getItem("theme"));
-} else {
-    document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + chosenTheme);
-    localStorage.setItem("theme", "https://bootswatch.com/5/" + chosenTheme);
-}*/
 let themeOptions = "<option value='css/bootstrap.min.css'>Select Theme</option>";
 for (let i = 0; i < themesList.length; i++) {
     themeOptions = themeOptions + "<option value='" + themesList[i] + "'>" + themesList[i].substring(25, themesList[i].lastIndexOf("/")) + "</option>";
@@ -55,13 +47,12 @@ document.getElementById("themes").innerHTML = themeOptions;
 
 function changeTheme() {
     let whichTheme = document.getElementById("themes").value;
-    document.getElementById("themedStyle").setAttribute("href", whichTheme);
-    chosenTheme = whichTheme.substring(25, whichTheme.length);
+    document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + whichTheme + "/bootstrap.css");
+    chosenTheme = whichTheme.replace("https://bootswatch.com/5/", "").replace("/bootstrap.css");
     console.log("chosenTheme: " + chosenTheme);
     localStorage.setItem("theme", chosenTheme);
     setGameLinks(chosenTheme);
 }
-
 
 let url = window.location;
 let themeVal = {};
@@ -73,23 +64,19 @@ let themeVal = {};
         if (pair[0].length) {
             themeVal[pair[0]] = pair[1];
             if (pair[0] === "theme") {
-                const themeFromUrl = "https://bootswatch.com/5/" + pair[1];
-                console.log("themeFromUrl: " + themeFromUrl);
+                const themeFromUrl = "https://bootswatch.com/5/" + pair[1] + "/bootstrap.css";
                 document.getElementById("themedStyle").setAttribute("href", themeFromUrl);
-                localStorage.setItem("theme", "https://bootswatch.com/5/" + pair[1]);
+                localStorage.setItem("theme", pair[1]);
             }
         }
     });
-
 if (localStorage.getItem("theme")) {
-    setGameLinks(localStorage.getItem("theme").substring(25, localStorage.getItem("theme").length));
+    setGameLinks(localStorage.getItem("theme"));
+    document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + localStorage.getItem("theme") + "/bootstrap.css");
 } else {
-    setGameLinks("cyborg/bootstrap.css");
+    setGameLinks("cyborg");
 }
-
 //END THEMES
-
-
 
 //START SOCIAL MEDIA
 const socialMedia = [
@@ -98,7 +85,6 @@ const socialMedia = [
     { link: "https://www.youtube.com/channel/UC_cqZ5WhobgOTFjRqcZKgKg", theClass: "fab fa-youtube" },
     { link: "https://www.instagram.com/aaronrs2002/", theClass: "fab fa-instagram" },
     { link: "mailto:aaron@web-presence.biz", theClass: "far fa-paper-plane" }
-
 ];
 let socialHTML = "";
 for (let i = 0; i < socialMedia.length; i++) {

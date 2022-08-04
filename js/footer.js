@@ -29,10 +29,10 @@ const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", g
 { link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }];
 
 
-function setGameLinks() {
+function setGameLinks(themePass) {
     let gameHTML = "";
     for (let i = 0; i < gameLinks.length; i++) {
-        gameHTML = gameHTML + "<a href='" + gameLinks[i].link + chosenTheme + "' class='btn btn-secondary'>" + gameLinks[i].game + "</a>";
+        gameHTML = gameHTML + "<a href='" + gameLinks[i].link + themePass + "' class='btn btn-secondary'>" + gameLinks[i].game + "</a>";
     }
     document.querySelector("#gameLinks").innerHTML = gameHTML;
 }
@@ -58,8 +58,8 @@ function changeTheme() {
     document.getElementById("themedStyle").setAttribute("href", whichTheme);
     chosenTheme = whichTheme.substring(25, whichTheme.length);
     console.log("chosenTheme: " + chosenTheme);
-    localStorage.setItem("theme", whichTheme);
-    setGameLinks();
+    localStorage.setItem("theme", chosenTheme);
+    setGameLinks(chosenTheme);
 }
 
 
@@ -81,7 +81,7 @@ let themeVal = {};
         }
     });
 
-setGameLinks();
+setGameLinks(chosenTheme);
 //END THEMES
 
 

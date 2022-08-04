@@ -22,7 +22,7 @@ const themesList = [
     "https://bootswatch.com/5/yeti/bootstrap.css",
 ];
 
-let chosenTheme = themesList[14].substring(25, themesList[14].length);
+let chosenTheme;
 //START GAME LINKS
 const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", game: "Black Jack" },
 { link: "https://aaronrs2002.github.io/craps/?theme=", game: "Craps" },
@@ -81,7 +81,12 @@ let themeVal = {};
         }
     });
 
-setGameLinks(chosenTheme);
+if (localStorage.getItem("theme")) {
+    setGameLinks(localStorage.getItem("theme"));
+} else {
+    setGameLinks(themesList[14].substring(25, themesList[14].length));
+}
+
 //END THEMES
 
 

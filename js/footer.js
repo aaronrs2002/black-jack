@@ -41,12 +41,12 @@ function setGameLinks(themePass) {
 
 
 //START THEMES
-if (localStorage.getItem("theme")) {
+/*if (localStorage.getItem("theme")) {
     document.getElementById("themedStyle").setAttribute("href", localStorage.getItem("theme"));
 } else {
     document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + chosenTheme);
     localStorage.setItem("theme", "https://bootswatch.com/5/" + chosenTheme);
-}
+}*/
 let themeOptions = "<option value='css/bootstrap.min.css'>Select Theme</option>";
 for (let i = 0; i < themesList.length; i++) {
     themeOptions = themeOptions + "<option value='" + themesList[i] + "'>" + themesList[i].substring(25, themesList[i].lastIndexOf("/")) + "</option>";

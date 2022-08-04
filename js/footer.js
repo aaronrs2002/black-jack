@@ -83,6 +83,8 @@ let themeVal = {};
 
 if (localStorage.getItem("theme")) {
     setGameLinks(localStorage.getItem("theme").substring(25, localStorage.getItem("theme").length));
+} else {
+    setGameLinks("cyborg/bootstrap.css");
 }
 
 //END THEMES

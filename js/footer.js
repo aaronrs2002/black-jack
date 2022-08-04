@@ -23,6 +23,23 @@ const themesList = [
 ];
 
 let chosenTheme = themesList[14].substring(25, themesList[14].length);
+//START GAME LINKS
+const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", game: "Black Jack" },
+{ link: "https://aaronrs2002.github.io/craps/?theme=", game: "Craps" },
+{ link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }];
+
+
+function setGameLinks() {
+    let gameHTML = "";
+    for (let i = 0; i < gameLinks.length; i++) {
+        gameHTML = gameHTML + "<a href='" + gameLinks[i].link + chosenTheme + "' class='btn btn-secondary'>" + gameLinks[i].game + "</a>";
+    }
+    document.querySelector("#gameLinks").innerHTML = gameHTML;
+}
+
+
+
+
 //START THEMES
 if (localStorage.getItem("theme")) {
     document.getElementById("themedStyle").setAttribute("href", localStorage.getItem("theme"));
@@ -40,7 +57,9 @@ function changeTheme() {
     let whichTheme = document.getElementById("themes").value;
     document.getElementById("themedStyle").setAttribute("href", whichTheme);
     chosenTheme = whichTheme.substring(25, whichTheme.length);
+    console.log("chosenTheme: " + chosenTheme);
     localStorage.setItem("theme", whichTheme);
+    setGameLinks();
 }
 
 
@@ -54,13 +73,15 @@ let themeVal = {};
         if (pair[0].length) {
             themeVal[pair[0]] = pair[1];
             if (pair[0] === "theme") {
-                document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + pair[1]);
+                const themeFromUrl = "https://bootswatch.com/5/" + pair[1];
+                console.log("themeFromUrl: " + themeFromUrl);
+                document.getElementById("themedStyle").setAttribute("href", themeFromUrl);
                 localStorage.setItem("theme", "https://bootswatch.com/5/" + pair[1]);
             }
         }
     });
 
-
+setGameLinks();
 //END THEMES
 
 
@@ -80,12 +101,3 @@ for (let i = 0; i < socialMedia.length; i++) {
 }
 document.querySelector("#socialList").innerHTML = socialHTML;
 
-//START GAMES
-const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=" + chosenTheme, game: "Black Jack" },
-{ link: "https://aaronrs2002.github.io/craps/?theme=" + chosenTheme, game: "Craps" },
-{ link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=" + chosenTheme, game: "Slots" }];
-let gameHTML = "";
-for (let i = 0; i < gameLinks.length; i++) {
-    gameHTML = gameHTML + "<a href='" + gameLinks[i].link + "' class='btn btn-secondary'>" + gameLinks[i].game + "</a>";
-}
-document.querySelector("#gameLinks").innerHTML = gameHTML;

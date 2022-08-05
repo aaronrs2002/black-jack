@@ -31,9 +31,14 @@ const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", g
 { link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }];
 
 function setGameLinks(themePass) {
+    let balance = "default";
+    if (localStorage.getItem("balance")) {
+        balance = localStorage.getItem("balance");
+    }
     let gameHTML = "";
     for (let i = 0; i < gameLinks.length; i++) {
-        gameHTML = gameHTML + "<a href='" + gameLinks[i].link + themePass + "' class='btn btn-secondary'>" + gameLinks[i].game + "</a>";
+
+        gameHTML = gameHTML + "<a href='" + gameLinks[i].link + themePass + "&balance=" + balance + "' class='btn btn-secondary'>" + gameLinks[i].game + "</a>";
     }
     document.querySelector("#gameLinks").innerHTML = gameHTML;
 }

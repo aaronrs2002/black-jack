@@ -81,6 +81,7 @@ function showAlert(status, message, type) {
         }
         document.getElementById("playerMoney").innerHTML = "Balance: $" + playerMoney;
         document.querySelector("#playerMoney").innerHTML = "Balance: $" + playerMoney;/*SAFARI BUG NEEDS BOTH*/
+        localStorage.setItem("balance", playerMoney);
     }
     document.querySelector("button[alt='split']").disabled = false;
     document.querySelector("button[alt='doubleD']").disabled = false;
@@ -272,6 +273,7 @@ function stay(whichHand) {    //START STAY()
             showAlert("split", splitMessage, "alert-primary");
             document.getElementById("playerMoney").innerHTML = "Balance: $" + playerMoney;
             document.querySelector("#playerMoney").innerHTML = "Balance: $" + playerMoney;/*SAFARI BUG NEEDS BOTH*/
+            localStorage.setItem("balance", playerMoney);
         }
     }
     if (splitActive === false) {

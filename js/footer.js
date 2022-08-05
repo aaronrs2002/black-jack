@@ -30,15 +30,23 @@ const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", g
 { link: "https://aaronrs2002.github.io/craps/?theme=", game: "Craps" },
 { link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }];
 
-function setGameLinks(themePass) {
-    let balance = "default";
+function navigateGames(selected) {
+    let balance = 500;
+    let setTheme = "cyborg";
+    if (localStorage.getItem("theme")) {
+        setTheme = localStorage.getItem("theme");
+    }
     if (localStorage.getItem("balance")) {
         balance = localStorage.getItem("balance");
     }
+    window.location.href = gameLinks[selected].link + setTheme + "&balance=" + balance;
+}
+
+function setGameLinks() {
     let gameHTML = "";
     for (let i = 0; i < gameLinks.length; i++) {
 
-        gameHTML = gameHTML + "<a href='" + gameLinks[i].link + themePass + "&balance=" + balance + "' class='btn btn-secondary'>" + gameLinks[i].game + "</a>";
+        gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-secondary'>" + gameLinks[i].game + "</button>";
     }
     document.querySelector("#gameLinks").innerHTML = gameHTML;
 }
@@ -85,6 +93,7 @@ if (localStorage.getItem("theme")) {
     document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + localStorage.getItem("theme") + "/bootstrap.css");
 } else {
     setGameLinks("cyborg");
+    localStorage.setItem("theme", "cyborg");
 }
 //END THEMES
 

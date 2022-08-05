@@ -42,6 +42,9 @@ let playerHTML = "";
 let playerTotal = 0;
 /*DOES NOT RESET AT DEAL*/
 let playerMoney = 500;
+if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) {
+    playerMoney = Number(localStorage.getItem("balance"));
+}
 let bet = 0;
 /*END DOES NOT RESET AT DEAL*/
 function enableBts() {

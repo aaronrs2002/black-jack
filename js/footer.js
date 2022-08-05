@@ -68,6 +68,11 @@ let themeVal = {};
                 document.getElementById("themedStyle").setAttribute("href", themeFromUrl);
                 localStorage.setItem("theme", pair[1]);
             }
+            if (pair[0] === "balance") {
+                localStorage.setItem("balance", pair[1]);
+            } else {
+                localStorage.setItem("balance", 500);
+            }
         }
     });
 if (localStorage.getItem("theme")) {

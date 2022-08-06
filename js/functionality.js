@@ -45,12 +45,13 @@ let playerMoney = 500;
 if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) {
     playerMoney = Number(localStorage.getItem("balance"));
 }
-document.querySelector("#playerMoney").innerHTML = "Balance $" + playerMoney;
+document.querySelector("#playerMoney").innerHTML = playerMoney;
 let bet = 0;
-function setPlayerMoney(playerMoney) {
-    document.getElementById("playerMoney").innerHTML = "Balance: $" + playerMoney;
-    document.querySelector("#playerMoney").innerHTML = "Balance: $" + playerMoney;/*SAFARI BUG NEEDS BOTH*/
-    localStorage.setItem("balance", playerMoney);
+function setPlayerMoney(passPlayerMoney) {
+    playerMoney = passPlayerMoney;
+    document.getElementById("playerMoney").innerHTML = passPlayerMoney;
+    document.querySelector("#playerMoney").innerHTML = passPlayerMoney;/*SAFARI BUG NEEDS BOTH*/
+    localStorage.setItem("balance", passPlayerMoney);
 }
 
 /*END DOES NOT RESET AT DEAL*/

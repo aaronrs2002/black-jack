@@ -47,6 +47,12 @@ if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) 
 }
 document.querySelector("#playerMoney").innerHTML = "Balance $" + playerMoney;
 let bet = 0;
+function setPlayerMoney(playerMoney) {
+    document.getElementById("playerMoney").innerHTML = "Balance: $" + playerMoney;
+    document.querySelector("#playerMoney").innerHTML = "Balance: $" + playerMoney;/*SAFARI BUG NEEDS BOTH*/
+    localStorage.setItem("balance", playerMoney);
+}
+
 /*END DOES NOT RESET AT DEAL*/
 function enableBts() {
     /*forEach was not working*/
@@ -83,9 +89,8 @@ function showAlert(status, message, type) {
             playerMoney = (playerMoney - bet);
             playSound(lossSound);
         }
-        document.getElementById("playerMoney").innerHTML = "Balance: $" + playerMoney;
-        document.querySelector("#playerMoney").innerHTML = "Balance: $" + playerMoney;/*SAFARI BUG NEEDS BOTH*/
-        localStorage.setItem("balance", playerMoney);
+
+        setPlayerMoney(playerMoney);
     }
     document.querySelector("button[alt='split']").disabled = false;
     document.querySelector("button[alt='doubleD']").disabled = false;
@@ -110,7 +115,6 @@ function checkAces(cardObj) {
             aces[j] = 0;
         }
     }
-    console.log("from checkAces(): " + tempTotal);
     return tempTotal;
 }
 
@@ -122,6 +126,16 @@ function removeCards(dealerCards, playerCards) {
         }
     }
     cards = tempCards;
+}
+
+function ckInsurance(card1, card2) {
+    setPlayerMoney(playerMoney - 5);
+    if ((card1 + card2) === 21) {
+        document.getElementById("dealerTotal").innerHTML = "Dealer has 21. Good job insuring.";
+        showAlert("lose", "DEALER HAS 21! ", "alert-danger");
+    } else {
+        document.getElementById("dealerTotal").innerHTML = "Dealer does not have 21. Let's play. Dealer has " + card2 + " showing.";
+    }
 }
 
 function deal(playerBet) {
@@ -177,7 +191,13 @@ function deal(playerBet) {
             dealerHTML = dealerHTML + "<div data-dealer='" + i + "' class='card " + dealerCards[i].title + "'></div>";
         }
         dealerTotal = dealerCards[1].value;
-        document.getElementById("dealerTotal").innerHTML = dealerTotal;
+        if (dealerCards[1].value === 10 || dealerCards[1].value === 11) {
+            console.log("Do you want insurance?");
+            document.getElementById("dealerTotal").innerHTML = dealerTotal + " - Do you want $5 insurance? <a href='#' onClick='ckInsurance(" + [dealerCards[0].value, dealerCards[1].value] + ")'>YES</a>";
+        } else {
+            document.getElementById("dealerTotal").innerHTML = dealerTotal;
+        }
+
     }
     for (let i = 0; i < 2; i++) {
         playerHTML = playerHTML + "<div data-player='" + i + "' class='card " + playerCards[i].title + "'></div>";
@@ -189,6 +209,7 @@ function deal(playerBet) {
     if (playerTotal === 21) {
         document.getElementById("playBts").classList.add("hide");
         showAlert("black-jack", "BLACK JACK! ", "alert-success");
+        document.getElementById("dealerTotal").innerHTML = dealerTotal;
     } else {
         document.getElementById("playBts").classList.remove("hide");
     }
@@ -274,9 +295,7 @@ function stay(whichHand) {    //START STAY()
                 }
             }
             showAlert("split", splitMessage, "alert-primary");
-            document.getElementById("playerMoney").innerHTML = "Balance: $" + playerMoney;
-            document.querySelector("#playerMoney").innerHTML = "Balance: $" + playerMoney;/*SAFARI BUG NEEDS BOTH*/
-            localStorage.setItem("balance", playerMoney);
+            setPlayerMoney(playerMoney);
         }
     }
     if (splitActive === false) {

@@ -45,6 +45,7 @@ let playerMoney = 500;
 if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) {
     playerMoney = Number(localStorage.getItem("balance"));
 }
+document.querySelector("#playerMoney").innerHTML = "Balance $" + playerMoney;
 let bet = 0;
 /*END DOES NOT RESET AT DEAL*/
 function enableBts() {
@@ -65,6 +66,9 @@ function showAlert(status, message, type) {
         document.getElementById("message").innerHTML = message;
         document.getElementById("status").classList.remove("hide");
         document.getElementById("status").classList.add(type);
+        [].forEach.call(document.querySelectorAll('.dealAmt'), function (e) {
+            e.disabled = false;
+        });
     }
     if (status !== "split") {
         if (status === "win") {
@@ -128,15 +132,14 @@ function deal(playerBet) {
     confirmations = [];
     document.querySelector("#split0").innerHTML = "";
     document.querySelector("#split1").innerHTML = "";
-    if (document.querySelectorAll('.dealAmt')) {
-        [].forEach.call(document.querySelectorAll('.dealAmt'), function (e) {
-            e.classList.remove('active');
-            console.log('remove active here.');
-        });
-    }
+    [].forEach.call(document.querySelectorAll('.dealAmt'), function (e) {
+        e.classList.remove('active');
+        e.disabled = true;
+    });
     cards = JSON.parse(localStorage.getItem("cards"));
     document.querySelector(".dealAmt[alt='" + playerBet + "']").classList.add("active");
     bet = playerBet;
+    document.getElementById("betTarget").innerHTML = "Bet: $" + bet;
     /*START RESET*/
     /*START DEALER VARIABLES*/
     dealerCards = [];

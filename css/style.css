@@ -58,6 +58,10 @@ footer {
 
 }
 
+ul.inline li {
+    display: inline-block;
+}
+
 
 .btn-group.block {
     width: 100%;

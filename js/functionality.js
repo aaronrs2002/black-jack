@@ -327,6 +327,7 @@ function stay(whichHand) {    //START STAY()
 
 function hit(whichHand) {
     playSound(hitSound);
+    document.getElementById("dealerTotal").innerHTML = dealerTotal;
     document.querySelector("button[alt='split']").disabled = true;
     document.querySelector("button[alt='doubleD']").disabled = true;
     let aces = [];

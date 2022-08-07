@@ -1,7 +1,10 @@
+
+/*FOOTER DATE*/
 const today = new Date();
 document.getElementById("year").innerHTML = "<i><label><a href='https://web-presence.biz/?src=web-presence-games' class='text-primary' target='_bank'>	&copy; Web-Precence LLC " +
     today.getFullYear() + "</a></label></i>";
 
+/*START THEMES*/
 const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
 console.log("themesList.length: " + themesList.length);
 let chosenTheme;
@@ -77,6 +80,23 @@ if (localStorage.getItem("theme")) {
 }
 //END THEMES
 
+
+
+/*START NAVIGATING ANIMATION*/
+function tadaRollover(element) {
+
+    document
+        .querySelector("[data-tada='" + element + "']")
+        .classList.add("tada");
+}
+function tadaRollout(element) {
+    document
+        .querySelector("[data-tada='" + element + "']")
+        .classList.remove("tada");
+}
+
+
+
 //START SOCIAL MEDIA
 const socialMedia = [
     { link: "https://www.linkedin.com/in/aaronrs2002", theClass: "fab fa-linkedin" },
@@ -87,7 +107,12 @@ const socialMedia = [
 ];
 let socialHTML = "";
 for (let i = 0; i < socialMedia.length; i++) {
-    socialHTML = socialHTML + "<a class='p-2 text-primary'  href='" + socialMedia[i].link + "' target='_blank' title='" + socialMedia[i].link + "' ><i class='" + socialMedia[i].theClass + "' ></i></a>";
+    socialHTML = socialHTML + `<a class="p-2 text-primary"  href="${socialMedia[i].link
+        }" target="_blank" title="${socialMedia[i].link}" ><i class="${socialMedia[i].theClass
+        } animated"  onmouseover="javascript:tadaRollover('${socialMedia[i].theClass
+        }')" onmouseout="javascript:tadaRollout('${socialMedia[i].theClass
+        }')" data-tada="${socialMedia[i].theClass
+        }"></i></a>`;
 }
 document.querySelector("#socialList").innerHTML = socialHTML;
 

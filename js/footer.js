@@ -1,29 +1,8 @@
-/*const themesList = [
-    "https://bootswatch.com/5/slate/bootstrap.css",
-    "https://bootswatch.com/5/cerulean/bootstrap.css",
-    "https://bootswatch.com/5/darkly/bootstrap.css",
-    "https://bootswatch.com/5/litera/bootstrap.css",
-    "https://bootswatch.com/5/materia/bootstrap.css",
-    "https://bootswatch.com/5/sandstone/bootstrap.css",
-    "https://bootswatch.com/5/superhero/bootstrap.css",
-    "https://bootswatch.com/5/cosmo/bootstrap.css",
-    "https://bootswatch.com/5/flatly/bootstrap.css",
-    "https://bootswatch.com/5/lumen/bootstrap.css",
-    "https://bootswatch.com/5/minty/bootstrap.css",
-    "https://bootswatch.com/5/simplex/bootstrap.css",
-    "https://bootswatch.com/5/solar/bootstrap.css",
-    "https://bootswatch.com/5/united/bootstrap.css",
-    "https://bootswatch.com/5/cyborg/bootstrap.css",
-    "https://bootswatch.com/5/journal/bootstrap.css",
-    "https://bootswatch.com/5/lux/bootstrap.css",
-    "https://bootswatch.com/5/pulse/bootstrap.css",
-    "https://bootswatch.com/5/sketchy/bootstrap.css",
-    "https://bootswatch.com/5/spacelab/bootstrap.css",
-    "https://bootswatch.com/5/yeti/bootstrap.css",
-];*/
+const today = new Date();
+document.getElementById("year").innerHTML = "<a href='https://web-presence.biz/?src=web-presence-games' target='_bank'>	&copy; Web-Precence LLC " + today.getFullYear() + "</a>";
 
 const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
-
+console.log("themesList.length: " + themesList.length);
 let chosenTheme;
 //START GAME LINKS
 const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", game: "Black Jack" },

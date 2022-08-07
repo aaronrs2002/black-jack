@@ -1,5 +1,5 @@
 const today = new Date();
-document.getElementById("year").innerHTML = "<a href='https://web-presence.biz/?src=web-presence-games' target='_bank'>	&copy; Web-Precence LLC " + today.getFullYear() + "</a>";
+document.getElementById("year").innerHTML = "<a href='https://web-presence.biz/?src=web-presence-games' class='text-primary' target='_bank'>	&copy; Web-Precence LLC " + today.getFullYear() + "</a>";
 
 const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
 console.log("themesList.length: " + themesList.length);
@@ -86,7 +86,7 @@ const socialMedia = [
 ];
 let socialHTML = "";
 for (let i = 0; i < socialMedia.length; i++) {
-    socialHTML = socialHTML + "<a class='p-2' href='" + socialMedia[i].link + "' target='_blank' title='" + socialMedia[i].link + "' ><i class='" + socialMedia[i].theClass + "' ></i></a>";
+    socialHTML = socialHTML + "<a class='p-2 text-primary'  href='" + socialMedia[i].link + "' target='_blank' title='" + socialMedia[i].link + "' ><i class='" + socialMedia[i].theClass + "' ></i></a>";
 }
 document.querySelector("#socialList").innerHTML = socialHTML;
 

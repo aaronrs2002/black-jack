@@ -1,5 +1,6 @@
 const today = new Date();
-document.getElementById("year").innerHTML = "<a href='https://web-presence.biz/?src=web-presence-games' class='text-primary' target='_bank'>	&copy; Web-Precence LLC " + today.getFullYear() + "</a>";
+document.getElementById("year").innerHTML = "<i><label><a href='https://web-presence.biz/?src=web-presence-games' class='text-primary' target='_bank'>	&copy; Web-Precence LLC " +
+    today.getFullYear() + "</a></label></i>";
 
 const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
 console.log("themesList.length: " + themesList.length);

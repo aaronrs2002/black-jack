@@ -132,7 +132,8 @@ function removeCards(dealerCards, playerCards) {
 function ckInsurance(card1, card2) {
     setPlayerMoney(playerMoney - 5);
     if ((card1 + card2) === 21) {
-        document.querySelector(".hiddenDealerCard").classList.add(dealerCards[0].title).classList.remove(".hiddenDealerCard");
+        document.querySelector(".hiddenDealerCard").classList.remove(".hiddenDealerCard");
+        document.querySelector(".hiddenDealerCard").classList.add(dealerCards[0].title);
         document.getElementById("dealerTotal").innerHTML = "DEALER HAS 21. Good job insuring.";
         showAlert("lose", "DEALER HAS 21! ", "alert-danger");
     } else {

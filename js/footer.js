@@ -8,34 +8,17 @@ document.getElementById("year").innerHTML = "<i><label><a href='https://web-pres
 const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
 console.log("themesList.length: " + themesList.length);
 let chosenTheme;
+
+/*START THEMES*/
 //START GAME LINKS
 const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", game: "Black Jack" },
 { link: "https://aaronrs2002.github.io/craps/?theme=", game: "Craps" },
 { link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }];
-
-function navigateGames(selected) {
-    let balance = 500;
-    let setTheme = "cyborg";
-    if (localStorage.getItem("theme")) {
-        setTheme = localStorage.getItem("theme");
-    }
-    if (localStorage.getItem("balance")) {
-        balance = localStorage.getItem("balance");
-    }
-    window.location.href = gameLinks[selected].link + setTheme + "&balance=" + balance;
-}
-
-function setGameLinks() {
-    let gameHTML = "";
-    for (let i = 0; i < gameLinks.length; i++) {
-
-        gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-secondary'>" + gameLinks[i].game + "</button>";
-    }
-    document.querySelector("#gameLinks").innerHTML = gameHTML;
-}
-
-//START THEMES
+let url = window.location;
+let themeVal = {};
 let themeOptions = "<option value='css/bootstrap.min.css'>Select Theme</option>";
+
+
 for (let i = 0; i < themesList.length; i++) {
     themeOptions = themeOptions + "<option value='" + themesList[i] + "'>" + themesList[i].substring(25, themesList[i].lastIndexOf("/")) + "</option>";
 }
@@ -49,9 +32,7 @@ function changeTheme() {
     localStorage.setItem("theme", chosenTheme);
     setGameLinks(chosenTheme);
 }
-
-let url = window.location;
-let themeVal = {};
+/*SPLIT PARAMS*/
 (url + "?")
     .split("?")[1]
     .split("&")
@@ -79,6 +60,41 @@ if (localStorage.getItem("theme")) {
     localStorage.setItem("theme", "cyborg");
 }
 //END THEMES
+
+
+
+function navigateGames(selected) {
+    let balance = 500;
+    let setTheme = "cyborg";
+    if (localStorage.getItem("theme")) {
+        setTheme = localStorage.getItem("theme");
+    }
+    if (localStorage.getItem("balance")) {
+        balance = localStorage.getItem("balance");
+    }
+    window.location.href = gameLinks[selected].link + setTheme + "&balance=" + balance;
+
+
+
+}
+
+function setGameLinks() {
+    let gameHTML = "";
+
+
+    for (let i = 0; i < gameLinks.length; i++) {
+        let active = "";
+        let hrefStr = gameLinks[i].link.toString();
+        const lastSlash = hrefStr.lastIndexOf("/");
+        hrefStr = hrefStr.substring(0, lastSlash);
+        if (url.indexOf(hrefStr) !== -1) {
+            active = "active";
+        }
+        gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-secondary " + active + "'>" + gameLinks[i].game + "</button>";
+    }
+    document.querySelector("#gameLinks").innerHTML = gameHTML;
+}
+
 
 
 

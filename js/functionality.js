@@ -132,10 +132,11 @@ function removeCards(dealerCards, playerCards) {
 function ckInsurance(card1, card2) {
     setPlayerMoney(playerMoney - 5);
     if ((card1 + card2) === 21) {
-        document.getElementById("dealerTotal").innerHTML = "Dealer has 21. Good job insuring.";
+        document.querySelector(".hiddenDealerCard").classList.add(dealerCards[0].title).classList.remove(".hiddenDealerCard");
+        document.getElementById("dealerTotal").innerHTML = "DEALER HAS 21. Good job insuring.";
         showAlert("lose", "DEALER HAS 21! ", "alert-danger");
     } else {
-        document.getElementById("dealerTotal").innerHTML = "Dealer does not have 21. Let's play. Dealer has " + card2 + " showing.";
+        document.getElementById("dealerTotal").innerHTML = "Dealer DOES NOT have 21. Let's play. Dealer has " + card2 + " showing.";
     }
 }
 

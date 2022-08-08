@@ -87,7 +87,7 @@ function setGameLinks() {
         let hrefStr = gameLinks[i].link.toString();
         const lastSlash = hrefStr.lastIndexOf("/");
         hrefStr = hrefStr.substring(0, lastSlash);
-        if (url.indexOf(hrefStr) !== -1) {
+        if (url.toString().indexOf(hrefStr) !== -1) {
             active = "active";
         }
         gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-secondary " + active + "'>" + gameLinks[i].game + "</button>";

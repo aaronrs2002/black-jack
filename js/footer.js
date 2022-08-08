@@ -73,15 +73,10 @@ function navigateGames(selected) {
         balance = localStorage.getItem("balance");
     }
     window.location.href = gameLinks[selected].link + setTheme + "&balance=" + balance;
-
-
-
 }
 
 function setGameLinks() {
     let gameHTML = "";
-
-
     for (let i = 0; i < gameLinks.length; i++) {
         let active = "";
         let hrefStr = gameLinks[i].link.toString();
@@ -94,9 +89,6 @@ function setGameLinks() {
     }
     document.querySelector("#gameLinks").innerHTML = gameHTML;
 }
-
-
-
 
 /*START NAVIGATING ANIMATION*/
 function tadaRollover(element) {
@@ -112,7 +104,6 @@ function tadaRollout(element) {
 }
 
 
-
 //START SOCIAL MEDIA
 const socialMedia = [
     { link: "https://www.linkedin.com/in/aaronrs2002", theClass: "fab fa-linkedin" },
@@ -121,6 +112,7 @@ const socialMedia = [
     { link: "https://www.instagram.com/aaronrs2002/", theClass: "fab fa-instagram" },
     { link: "mailto:aaron@web-presence.biz", theClass: "far fa-paper-plane" }
 ];
+
 let socialHTML = "";
 for (let i = 0; i < socialMedia.length; i++) {
     socialHTML = socialHTML + `<a class="p-2 text-primary"  href="${socialMedia[i].link

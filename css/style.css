@@ -154,7 +154,7 @@ h5 {
     display: inline-block;
     height: 107px;
     width: 73px;
-    border: 1px solid #fff;
+    border: .5px solid #999;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 5px;
 }
@@ -174,7 +174,7 @@ h5 {
 }
 
 .four-spades {
-    background-position: -241px -7px;
+    background-position: -242px -7px;
 }
 
 .five-spades {
@@ -245,7 +245,7 @@ h5 {
 }
 
 .eight-hearts {
-    background-position: -554px -121px;
+    background-position: -555px -121px;
 }
 
 .nine-hearts {
@@ -279,11 +279,11 @@ h5 {
 }
 
 .three-diamonds {
-    background-position: -163px -235px;
+    background-position: -163px -236px;
 }
 
 .four-diamonds {
-    background-position: -241px -235px;
+    background-position: -241px -236px;
 }
 
 .five-diamonds {
@@ -299,7 +299,7 @@ h5 {
 }
 
 .eight-diamonds {
-    background-position: -554px -235px;
+    background-position: -555px -236px;
 }
 
 .nine-diamonds {
@@ -307,7 +307,7 @@ h5 {
 }
 
 .ten-diamonds {
-    background-position: -712px -235px;
+    background-position: -711px -236px;
 }
 
 .jack-diamonds {
@@ -361,7 +361,7 @@ h5 {
 }
 
 .ten-clubs {
-    background-position: -712px -350px;
+    background-position: -711px -350px;
 }
 
 .jack-clubs {
@@ -383,6 +383,8 @@ h5 {
     width: 72px;
     background-image: none !important;
     background-color: firebrick;
+    border-radius: 10px;
+    border: 1px #999 solid;
 
 }
 

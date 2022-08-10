@@ -135,7 +135,7 @@ function ckInsurance(card1, card2) {
         document.querySelector("[data-dealer='0']").classList.remove("hiddenDealerCard");
         document.querySelector("[data-dealer='0']").classList.add(dealerCards[0].title);
         document.getElementById("dealerTotal").innerHTML = "DEALER HAS 21. Good job insuring.";
-        showAlert("insured", "DEALER HAS 21! ", "alert-danger");
+        showAlert("insured", "DEALER HAS 21! Good thing you are insured.", "alert-danger");
     } else {
         document.getElementById("dealerTotal").innerHTML = "Dealer DOES NOT have 21. Let's play. Dealer has " + card2 + " showing.";
     }

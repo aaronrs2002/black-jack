@@ -263,7 +263,6 @@ function stay(whichHand) {    //START STAY()
         while (dealerTotal <= 16 && dealerTotal <= 21) {
             addcard();
         }
-        console.log("dealerTotal: " + dealerTotal + " - checkAces(dealerCards): " + checkAces(dealerCards));
         let splitMessage = "";
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] <= 21) {
             showAlert("split", "YOU WON. DEALER BUSTED!", "alert-success");

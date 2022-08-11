@@ -6,7 +6,6 @@ document.getElementById("year").innerHTML = "<i><label><a href='https://web-pres
 
 /*START THEMES*/
 const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
-console.log("themesList.length: " + themesList.length);
 let chosenTheme;
 
 /*START THEMES*/

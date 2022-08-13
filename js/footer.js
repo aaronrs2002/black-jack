@@ -5,7 +5,7 @@ document.getElementById("year").innerHTML = "<i><label><a href='https://web-pres
     today.getFullYear() + "</a></label></i>";
 
 /*START THEMES*/
-const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
+const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "pulse", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
 let chosenTheme;
 
 /*START THEMES*/
@@ -15,7 +15,7 @@ const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", g
 { link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }];
 let url = window.location;
 let themeVal = {};
-let themeOptions = "<option value='css/bootstrap.min.css'>Select Theme</option>";
+let themeOptions = "";
 
 
 for (let i = 0; i < themesList.length; i++) {
@@ -55,8 +55,8 @@ if (localStorage.getItem("theme")) {
     setGameLinks(localStorage.getItem("theme"));
     document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + localStorage.getItem("theme") + "/bootstrap.css");
 } else {
-    setGameLinks("cyborg");
-    localStorage.setItem("theme", "cyborg");
+    setGameLinks("pulse");
+    localStorage.setItem("theme", "pulse");
 }
 //END THEMES
 
@@ -64,7 +64,7 @@ if (localStorage.getItem("theme")) {
 
 function navigateGames(selected) {
     let balance = 500;
-    let setTheme = "cyborg";
+    let setTheme = "pulse";
     if (localStorage.getItem("theme")) {
         setTheme = localStorage.getItem("theme");
     }

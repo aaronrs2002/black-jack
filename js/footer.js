@@ -5,7 +5,7 @@ document.getElementById("year").innerHTML = "<i><label><a href='https://web-pres
     today.getFullYear() + "</a></label></i>";
 
 /*START THEMES*/
-const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "pulse", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
+const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
 let chosenTheme;
 
 /*START THEMES*/
@@ -55,8 +55,8 @@ if (localStorage.getItem("theme")) {
     setGameLinks(localStorage.getItem("theme"));
     document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + localStorage.getItem("theme") + "/bootstrap.css");
 } else {
-    setGameLinks("pulse");
-    localStorage.setItem("theme", "pulse");
+    setGameLinks("flatly");
+    localStorage.setItem("theme", "flatly");
 }
 //END THEMES
 
@@ -64,7 +64,7 @@ if (localStorage.getItem("theme")) {
 
 function navigateGames(selected) {
     let balance = 500;
-    let setTheme = "pulse";
+    let setTheme = "flatly";
     if (localStorage.getItem("theme")) {
         setTheme = localStorage.getItem("theme");
     }

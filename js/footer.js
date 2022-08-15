@@ -60,8 +60,7 @@ if (localStorage.getItem("theme")) {
     setGameLinks("flatly");
     localStorage.setItem("theme", "flatly");
 }
-window.location.href = gameLinks[selected].link + setTheme + "&";
-console.log("I tried to take balance out of the url");
+
 //END THEMES
 
 

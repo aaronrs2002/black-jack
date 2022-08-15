@@ -45,8 +45,9 @@ function changeTheme() {
                 localStorage.setItem("theme", pair[1]);
             }
             if (pair[0] === "balance") {
-                localStorage.setItem("balance", pair[1]);
+                localStorage.setItem("balance", pair[1].replace("#", ""));
                 console.log("found url parameter. Should set local storage balance.");
+
             } else {
                 localStorage.setItem("balance", 500);
             }
@@ -59,6 +60,8 @@ if (localStorage.getItem("theme")) {
     setGameLinks("flatly");
     localStorage.setItem("theme", "flatly");
 }
+window.location.href = gameLinks[selected].link + setTheme + "&balance=";
+console.log("I tried to take balance out of the url");
 //END THEMES
 
 

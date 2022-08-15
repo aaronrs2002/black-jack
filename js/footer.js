@@ -57,8 +57,8 @@ if (localStorage.getItem("theme")) {
     setGameLinks(localStorage.getItem("theme"));
     document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + localStorage.getItem("theme") + "/bootstrap.css");
 } else {
-    setGameLinks("flatly");
-    localStorage.setItem("theme", "flatly");
+    setGameLinks("united");
+    localStorage.setItem("theme", "united");
 }
 
 //END THEMES
@@ -67,7 +67,7 @@ if (localStorage.getItem("theme")) {
 
 function navigateGames(selected) {
     let balance = 500;
-    let setTheme = "flatly";
+    let setTheme = "united";
     if (localStorage.getItem("theme")) {
         setTheme = localStorage.getItem("theme");
     }

@@ -52,6 +52,7 @@ function setPlayerMoney(passPlayerMoney) {
     document.getElementById("playerMoney").innerHTML = passPlayerMoney;
     document.querySelector("#playerMoney").innerHTML = passPlayerMoney;/*SAFARI BUG NEEDS BOTH*/
     localStorage.setItem("balance", passPlayerMoney);
+    console.log("Should be setting the local storage balance to " + playerMoney);
 }
 
 /*END DOES NOT RESET AT DEAL*/

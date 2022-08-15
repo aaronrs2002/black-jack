@@ -46,6 +46,7 @@ function changeTheme() {
             }
             if (pair[0] === "balance") {
                 localStorage.setItem("balance", pair[1]);
+                console.log("found url parameter. Should set local storage balance.");
             } else {
                 localStorage.setItem("balance", 500);
             }

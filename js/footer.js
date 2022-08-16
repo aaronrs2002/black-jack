@@ -5,7 +5,7 @@ document.getElementById("year").innerHTML = "<i><label><a href='https://web-pres
     today.getFullYear() + "</a></label></i>";
 
 /*START THEMES*/
-const themesList = ["slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "united", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
+const themesList = ["united", "slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
 let chosenTheme;
 
 /*START THEMES*/
@@ -19,7 +19,7 @@ let themeOptions = "";
 
 
 for (let i = 0; i < themesList.length; i++) {
-    themeOptions = themeOptions + "<option value='" + themesList[i] + "'>" + themesList[i].substring(25, themesList[i].lastIndexOf("/")) + "</option>";
+    themeOptions = themeOptions + "<option value='" + themesList[i] + "'>Theme: " + themesList[i].substring(25, themesList[i].lastIndexOf("/")) + "</option>";
 }
 document.getElementById("themes").innerHTML = themeOptions;
 

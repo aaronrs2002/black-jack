@@ -5,7 +5,7 @@ document.getElementById("year").innerHTML = "<i><label><a href='https://web-pres
     today.getFullYear() + "</a></label></i>";
 
 /*START THEMES*/
-const themesList = ["united", "slate", "cerulean", "darkly", "litera", "materia", "sandstone", "superhero", "cosmo", "flatly", "lumen", "minty", "simplex", "solar", "cyborg", "journal", "lux", "pulse", "sketchy", "spacelab", "yeti",];
+const themesList = ["United", "Slate", "Cerulean", "Darkly", "Litera", "Materia", "Sandstone", "Superhero", "Cosmo", "Flatly", "Lumen", "Minty", "Simplex", "Solar", "Cyborg", "Journal", "Lux", "Pulse", "Sketchy", "Spacelab", "Yeti",];
 let chosenTheme;
 
 /*START THEMES*/
@@ -19,7 +19,7 @@ let themeOptions = "";
 
 
 for (let i = 0; i < themesList.length; i++) {
-    themeOptions = themeOptions + "<option value='" + themesList[i] + "' class='capitalize'>Theme: " + themesList[i].substring(25, themesList[i].lastIndexOf("/")) + "</option>";
+    themeOptions = themeOptions + "<option value='" + themesList[i].toLocaleLowerCase() + "'>Theme: <span class='capitalize'>" + themesList[i] + "</span></option>";
 }
 document.getElementById("themes").innerHTML = themeOptions;
 
@@ -45,7 +45,6 @@ function changeTheme() {
             }
             if (pair[0] === "balance") {
                 localStorage.setItem("balance", pair[1].replace("#", ""));
-                console.log("found url parameter. Should set local storage balance.");
 
             } else {
                 localStorage.setItem("balance", 500);

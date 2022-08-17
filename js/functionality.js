@@ -67,7 +67,6 @@ function showAlert(status, message, type) {
             playerMoney = (playerMoney - bet);
             playSound(lossSound);
         }
-
         setPlayerMoney(playerMoney);
     }
     document.querySelector("button[alt='split']").disabled = false;
@@ -245,17 +244,14 @@ function stay(whichHand) {    //START STAY()
             showAlert("split", "YOU WON. DEALER BUSTED!", "alert-success");
             playerMoney = (playerMoney + bet + bet);
         }
-
         if (dealerTotal > 21 && splitArr[0] > 21 && splitArr[1] <= 21) {
             showAlert("split", "YOU BUSTED HAND ONE THEN WON HAND 2. DEALER BUSTED!", "alert-success");
             playerMoney = (playerMoney + bet);
         }
-
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] > 21) {
             showAlert("split", "YOU WON HAND ONE THEN BUSTED HAND 2. DEALER BUSTED!", "alert-success");
             playerMoney = (playerMoney + bet);
         }
-
         if (dealerTotal <= 21) {
             for (let i = 0; i < splitArr.length; i++) {
                 if (dealerTotal < splitArr[i] && splitArr[i] <= 21) {
@@ -282,7 +278,6 @@ function stay(whichHand) {    //START STAY()
         while (dealerTotal <= 16 && dealerTotal <= 21) {
             addcard();
         }
-
         if (dealerTotal > 21) {
             if (dealerTotal < 17) {
                 addcard();

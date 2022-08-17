@@ -57,7 +57,7 @@
 .jack-clubs,
 .queen-clubs,
 .king-clubs {
-    background-image: url('../img/English_pattern_playing_cards_deck.svg.png');
+    background-image: url('../img/cards.png');
     background-repeat: no-repeat;
     padding: 5px;
     margin: 0px 5px;
@@ -180,7 +180,7 @@
 
 /*START DIAMONDS*/
 .ace-diamonds {
-    background-position: -7px -235px;
+    background-position: -7px -237px;
 }
 
 .two-diamonds {

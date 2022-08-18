@@ -1,4 +1,5 @@
 let tempCards = [];
+let burnCard;
 localStorage.setItem("cards", JSON.stringify(cards));
 const originalCards = cards;
 //SPLIT CARDS
@@ -98,7 +99,7 @@ function checkAces(cardObj) {
 function removeCards(dealerCards, playerCards) {
     tempCards = [];
     for (let i = 0; i < cards.length; i++) {
-        if (dealerCards.indexOf(cards[i]) === -1 && playerCards.indexOf(cards[i]) === -1) {
+        if (dealerCards.indexOf(cards[i]) === -1 && playerCards.indexOf(cards[i]) === -1 && cards[i].title !== burnCard.title) {
             tempCards.push(cards[i]);
         }
     }
@@ -159,9 +160,9 @@ function deal(playerBet) {
             }
         }
     }
-
-    dealerCards = [randNumsArr[1], randNumsArr[3]];
-    playerCards = [randNumsArr[2], randNumsArr[4]];
+    burnCard = randNumsArr[0],
+        dealerCards = [randNumsArr[1], randNumsArr[3]],
+        playerCards = [randNumsArr[2], randNumsArr[4]];
     removeCards(dealerCards, playerCards);
     for (let i = 0; i < 2; i++) {
         if (i === 0) {

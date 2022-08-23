@@ -46,8 +46,6 @@ function changeTheme() {
             if (pair[0] === "balance") {
                 localStorage.setItem("balance", pair[1].replace("#", ""));
 
-            } else {
-                localStorage.setItem("balance", 500);
             }
         }
     });

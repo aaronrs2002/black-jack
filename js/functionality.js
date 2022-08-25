@@ -305,7 +305,6 @@ function hit(whichHand) {
     document.getElementById("dealerTotal").innerHTML = dealerTotal;
     document.querySelector("button[alt='split']").disabled = true;
     document.querySelector("button[alt='doubleD']").disabled = true;
-    let aces = [];
     if (splitActive === false) {
         let randomNum = Math.floor(Math.random() * cards.length);
         playerCards.push(cards[randomNum]);

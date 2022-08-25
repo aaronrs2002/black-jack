@@ -1,6 +1,8 @@
 # black-jack
 
-gitHub is hosting tis game here: https://aaronrs2002.github.io/black-jack/
+gitHub is hosting this game here: https://aaronrs2002.github.io/black-jack/
+
+Wiki documentation: https://github.com/aaronrs2002/black-jack/wiki
 
 
 Vanilla JavaScript BlackJack

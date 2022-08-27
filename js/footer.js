@@ -1,7 +1,7 @@
 
 /*FOOTER DATE*/
 const today = new Date();
-document.getElementById("year").innerHTML = "<i><label><a href='https://web-presence.biz/?src=web-presence-games' class='text-primary' target='_bank'>	&copy; Web-Precence LLC " +
+document.getElementById("year").innerHTML = "<i><label><a href='https://web-presence.biz/?src=web-presence-games' class='text-primary' target='_bank'>	&copy; Web-Presence LLC " +
     today.getFullYear() + "</a></label></i>";
 
 /*START THEMES*/

@@ -13,6 +13,9 @@ body {
     padding: 0px;
 }
 
+.error {
+    border: 1px #ff0000 solid;
+}
 
 
 .capitalize {

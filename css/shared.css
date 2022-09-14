@@ -99,7 +99,16 @@ h5 {
 
 }
 
+/*START GLOBAL ALERT CSS*/
 
+#globalAlert {
+    width: 100%;
+    position: absolute;
+    top: 40%;
+}
+
+
+/*END GLOBAL ALERT CSS*/
 
 @media (max-width: 767px) {
     #socialList a i {

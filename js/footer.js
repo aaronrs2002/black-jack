@@ -122,3 +122,16 @@ for (let i = 0; i < socialMedia.length; i++) {
 }
 document.querySelector("#socialList").innerHTML = socialHTML;
 
+//START GLOBAL ALERT
+function globalAlert(alertLevel, message) {
+
+    document.getElementById("globalAlert").classList.remove("hide");
+    document.getElementById("globalAlert").classList.add(alertLevel);
+    document.getElementById("globalAlert").classList.add("animated");
+    document.getElementById("globalAlert").innerHTML = message;
+
+    setTimeout(function () {
+        document.getElementById("globalAlert").classList.add("hide");
+    }, 5000);
+
+}

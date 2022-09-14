@@ -132,7 +132,7 @@ function globalAlert(alertLevel, message) {
 
     setTimeout(function () {
         document.getElementById("globalAlert").classList.add("hide");
-        document.getElementById("globalAlert").classList.add(alertLevel);
+        document.getElementById("globalAlert").classList.remove(alertLevel);
     }, 5000);
 
 }

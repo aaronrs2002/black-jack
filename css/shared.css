@@ -132,11 +132,39 @@ h5 {
 
 /*END GLOBAL ALERT CSS*/
 
-@media (max-width: 767px) {
+/*START MOBILE CSS*/
+
+.desktopOnly {
+    display: block;
+}
+
+.mobileOnly {
+    display: none;
+}
+
+
+.mobileBlock {
+    width: auto;
+}
+
+
+@media (max-width: 768px) {
     #socialList a i {
         padding: 12px 10px 25px 10px;
+    }
 
+    .desktopOnly {
+        display: none;
+    }
+
+    .mobileOnly {
+        display: block;
+    }
+
+    .mobileBlock {
+        display: block;
+        width: 100%;
     }
 }
 
-/*end 767*/
+/*end 768*/

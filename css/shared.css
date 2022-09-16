@@ -103,10 +103,11 @@ h5 {
 
 #globalAlert {
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 40%;
 }
 
+/*END GLOBAL ALERT CSS*/
 /*start loader animation*/
 .loader {
     border: 16px solid #f3f3f3;
@@ -130,7 +131,7 @@ h5 {
 }
 
 
-/*END GLOBAL ALERT CSS*/
+
 
 /*START MOBILE CSS*/
 

@@ -69,6 +69,8 @@ function showAlert(status, message, type) {
             playSound(lossSound);
         }
         setPlayerMoney(playerMoney);
+    } else {
+        setPlayerMoney(playerMoney);
     }
     document.querySelector("button[alt='split']").disabled = false;
     document.querySelector("button[alt='doubleD']").disabled = false;
@@ -271,7 +273,6 @@ function stay(whichHand) {    //START STAY()
                 }
             }
             showAlert("split", splitMessage, "alert-primary");
-            setPlayerMoney(playerMoney);
         }
     }
     if (splitActive === false) {

@@ -272,8 +272,10 @@ function stay(whichHand) {    //START STAY()
                     playerMoney = (playerMoney += (bet * .5))
                 }
             }
+            setPlayerMoney(playerMoney);
             showAlert("split", splitMessage, "alert-primary");
         }
+
     }
     if (splitActive === false) {
         dealerTotal = Number(checkAces(dealerCards));

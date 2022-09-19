@@ -23,11 +23,18 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJWFFXF8G0"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+        const urlStr = window.location.href;
+        if (urlStr.indexOf("aaronrs2002.github.io") === -1) {
+            console.log("not running GA");
+        } else {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-JJWFFXF8G0');
+            console.log("RUNNING GA");
+        }
 
-        gtag('config', 'G-JJWFFXF8G0');
+
     </script>
 </head>
 

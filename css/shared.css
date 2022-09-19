@@ -105,6 +105,7 @@ h5 {
     width: 100%;
     position: fixed;
     top: 40%;
+    z-index: 5;
 }
 
 /*END GLOBAL ALERT CSS*/

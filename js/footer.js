@@ -25,10 +25,11 @@ document.getElementById("themes").innerHTML = themeOptions;
 
 function changeTheme() {
     let whichTheme = document.getElementById("themes").value;
-    document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + whichTheme + "/bootstrap.css");
+    // document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + whichTheme + "/bootstrap.css");
     chosenTheme = whichTheme.replace("https://bootswatch.com/5/", "").replace("/bootstrap.css");
     localStorage.setItem("theme", chosenTheme);
-    setGameLinks(chosenTheme);
+    //setGameLinks(chosenTheme);
+    window.location = "?theme=" + chosenTheme + "&balance=" + localStorage.getItem("balance") + "&";
 }
 /*SPLIT PARAMS*/
 (url + "?")

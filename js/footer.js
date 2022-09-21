@@ -15,7 +15,7 @@ const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", g
 { link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/?theme=", game: "WordFun" }];
 let url = window.location;
 let themeVal = {};
-let themeOptions = "";
+let themeOptions = "<option value='default'>Select Theme</option>";
 
 
 for (let i = 0; i < themesList.length; i++) {
@@ -25,11 +25,16 @@ document.getElementById("themes").innerHTML = themeOptions;
 
 function changeTheme() {
     let whichTheme = document.getElementById("themes").value;
-    // document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + whichTheme + "/bootstrap.css");
-    chosenTheme = whichTheme.replace("https://bootswatch.com/5/", "").replace("/bootstrap.css");
-    localStorage.setItem("theme", chosenTheme);
-    //setGameLinks(chosenTheme);
-    window.location = "?theme=" + chosenTheme + "&balance=" + localStorage.getItem("balance") + "&";
+    if (whichTheme === "default") {
+        return false;
+    } else {
+        // document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + whichTheme + "/bootstrap.css");
+        chosenTheme = whichTheme.replace("https://bootswatch.com/5/", "").replace("/bootstrap.css");
+        localStorage.setItem("theme", chosenTheme);
+        //setGameLinks(chosenTheme);
+        window.location = "?theme=" + chosenTheme + "&balance=" + localStorage.getItem("balance") + "&";
+    }
+
 }
 /*SPLIT PARAMS*/
 (url + "?")

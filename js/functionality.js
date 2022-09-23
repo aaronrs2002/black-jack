@@ -255,6 +255,10 @@ function stay(whichHand) {    //START STAY()
             showAlert("split", "YOU WON HAND ONE THEN BUSTED HAND 2. DEALER BUSTED!", "alert-success");
             playerMoney = (playerMoney + bet);
         }
+
+
+
+
         if (dealerTotal <= 21) {
             for (let i = 0; i < splitArr.length; i++) {
                 if (dealerTotal < splitArr[i] && splitArr[i] <= 21) {
@@ -273,6 +277,11 @@ function stay(whichHand) {    //START STAY()
                 }
             }
             showAlert("split", splitMessage, "alert-primary");
+        }
+        else if (splitArr[0] > 21 && splitArr[1] > 21 && splitMessage.length === 0) {
+            showAlert("split", "YOU BUSTED BOTH HANDS!", "alert-danger");
+            bet = bet + bet;
+            playerMoney = (playerMoney -= bet);
         }
         setPlayerMoney(playerMoney);
 

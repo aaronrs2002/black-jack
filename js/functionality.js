@@ -91,7 +91,7 @@ function checkAces(cardObj) {
     }
     for (let j = 0; j < aces.length; j++) {
         while (tempTotal > 21 && aces[j] === 10) {
-            tempTotal = (tempTotal -= 10);
+            tempTotal = (tempTotal - 10);
             aces[j] = 0;
         }
     }
@@ -249,24 +249,19 @@ function stay(whichHand) {    //START STAY()
         }
         if (dealerTotal > 21 && splitArr[0] > 21 && splitArr[1] <= 21) {/*you broke even playerMoney stays the same*/
             showAlert("split", "YOU BUSTED HAND ONE THEN WON HAND 2. DEALER BUSTED!", "alert-success");
-
         }
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] > 21) {/*you broke even playerMoney stays the same*/
             showAlert("split", "YOU WON HAND ONE THEN BUSTED HAND 2. DEALER BUSTED!", "alert-success");
-
         }
-
-
-
 
         if (dealerTotal <= 21) {
             for (let i = 0; i < splitArr.length; i++) {
                 if (dealerTotal < splitArr[i] && splitArr[i] <= 21) {
-                    playerMoney = (playerMoney += bet);
+                    playerMoney = (playerMoney + bet);
                     splitMessage = splitMessage + "YOU WON HAND " + (i + 1) + ". ";
                 }
                 if (dealerTotal > splitArr[i] || splitArr[i] > 21) {
-                    playerMoney = (playerMoney -= bet);
+                    playerMoney = (playerMoney - bet);
                     splitMessage = splitMessage + "YOU LOST HAND " + (i + 1) + ". ";
                 }
                 if (dealerTotal === splitArr[i] && splitArr[i] <= 21) {
@@ -281,7 +276,7 @@ function stay(whichHand) {    //START STAY()
         else if (splitArr[0] > 21 && splitArr[1] > 21 && splitMessage.length === 0) {
             showAlert("split", "YOU BUSTED BOTH HANDS!", "alert-danger");
             bet = bet + bet;
-            playerMoney = (playerMoney -= bet);
+            playerMoney = (playerMoney - bet);
         }
         setPlayerMoney(playerMoney);
 

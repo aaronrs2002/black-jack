@@ -237,12 +237,19 @@ function stay(whichHand) {    //START STAY()
         dealerTotal = checkAces(dealerCards);
     }
     if (splitActive === true && confirmations.length === 2) {
+
         let splitArr = [Number(playerTotal0), Number(playerTotal1)];
         dealerTotal = checkAces(dealerCards);
         while (dealerTotal <= 16 && dealerTotal <= 21) {
             addcard();
         }
         let splitMessage = "";
+        if (splitCards0.length === 2 && splitArr[0] === 21) {
+            playerMoney = (playerMoney + (bet * .5));
+        }
+        if (splitCards1.length === 2 && splitArr[1] === 21) {
+            playerMoney = (playerMoney + (bet * .5));
+        }
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] <= 21) {
             showAlert("split", "YOU WON. DEALER BUSTED!", "alert-success");
             playerMoney = (playerMoney + bet + bet);
@@ -267,12 +274,7 @@ function stay(whichHand) {    //START STAY()
                 if (dealerTotal === splitArr[i] && splitArr[i] <= 21) {
                     splitMessage = splitMessage + "YOU PUSHED HAND " + (i + 1) + ". ";
                 }
-                if (i === 0 && splitCards0.length === 2 && splitArr[i] === 21) {
-                    playerMoney = (playerMoney + (bet * 1.5));
-                }
-                if (i === 1 && splitCards1.length === 2 && splitArr[i] === 21) {
-                    playerMoney = (playerMoney + (bet * 1.5));
-                }
+
             }
             showAlert("split", splitMessage, "alert-primary");
         }

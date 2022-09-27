@@ -247,13 +247,13 @@ function stay(whichHand) {    //START STAY()
             showAlert("split", "YOU WON. DEALER BUSTED!", "alert-success");
             playerMoney = (playerMoney + bet + bet);
         }
-        if (dealerTotal > 21 && splitArr[0] > 21 && splitArr[1] <= 21) {
+        if (dealerTotal > 21 && splitArr[0] > 21 && splitArr[1] <= 21) {/*you broke even playerMoney stays the same*/
             showAlert("split", "YOU BUSTED HAND ONE THEN WON HAND 2. DEALER BUSTED!", "alert-success");
-            playerMoney = (playerMoney + bet);
+
         }
-        if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] > 21) {
+        if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] > 21) {/*you broke even playerMoney stays the same*/
             showAlert("split", "YOU WON HAND ONE THEN BUSTED HAND 2. DEALER BUSTED!", "alert-success");
-            playerMoney = (playerMoney + bet);
+
         }
 
 

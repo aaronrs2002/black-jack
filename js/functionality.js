@@ -267,8 +267,11 @@ function stay(whichHand) {    //START STAY()
                 if (dealerTotal === splitArr[i] && splitArr[i] <= 21) {
                     splitMessage = splitMessage + "YOU PUSHED HAND " + (i + 1) + ". ";
                 }
-                if (splitArr[i] === 21) {
-                    playerMoney = (playerMoney += (bet * .5))
+                if (i === 0 && splitCards0.length === 2 && splitArr[i] === 21) {
+                    playerMoney = (playerMoney + (bet * 1.5));
+                }
+                if (i === 1 && splitCards1.length === 2 && splitArr[i] === 21) {
+                    playerMoney = (playerMoney + (bet * 1.5));
                 }
             }
             showAlert("split", splitMessage, "alert-primary");

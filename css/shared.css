@@ -81,11 +81,6 @@ ul.inline li {
     padding: 0px;
 }
 
-#gameLinks .btn {
-    font-size: .75rem;
-    --bs-btn-font-size: .75rem;
-}
-
 
 h1,
 h2,
@@ -159,6 +154,13 @@ h5 {
     #socialList a i {
         padding: 12px 10px 25px 10px;
     }
+
+    #gameLinks .btn {
+        font-size: .75rem;
+        --bs-btn-font-size: .75rem;
+    }
+
+
 
     .desktopOnly {
         display: none;

@@ -81,6 +81,11 @@ ul.inline li {
     padding: 0px;
 }
 
+#gameLinks .btn {
+    font-size: .75rem;
+    --bs-btn-font-size: .75rem;
+}
+
 
 h1,
 h2,

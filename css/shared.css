@@ -17,6 +17,9 @@ body {
     border: 1px #ff0000 solid;
 }
 
+ul.decimal {
+    list-style-type: decimal;
+}
 
 .capitalize {
     text-transform: capitalize;

@@ -142,3 +142,17 @@ function globalAlert(alertLevel, message) {
     }, 5000);
 
 }
+
+/*START GLOBAL TOGGLE FUNCTION*/
+
+function toggle(element) {
+    [].forEach.call(document.querySelectorAll("[data-toggle]"), function (e) {
+        e.classList.add("hide");
+    });
+
+    [].forEach.call(document.querySelectorAll("[data-toggle='" + element + "']"), function (e) {
+        e.classList.remove("hide");
+    });
+}
+
+/*END GLOBAL TOGGLE FUNCTION*/

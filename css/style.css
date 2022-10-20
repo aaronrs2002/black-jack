@@ -296,9 +296,10 @@
     border-radius: 10px;
     border: 1px #999 solid;
     background-image: url("https://web-presence.biz/img/MA_Logo.png");
-    background-size: 250%;
+    background-size: 300%;
     background-repeat: no-repeat;
     background-position-y: center;
     background-position-x: center;
-    opacity: 0.55;
+
+    filter: grayscale(1);
 }

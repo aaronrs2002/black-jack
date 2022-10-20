@@ -291,9 +291,14 @@
     display: inline-block;
     height: 108px;
     width: 72px;
-    background-image: none !important;
-    background-color: firebrick;
+
+    background-color: #dc4c16;
     border-radius: 10px;
     border: 1px #999 solid;
-
+    background-image: url("https://web-presence.biz/img/MA_Logo.png");
+    background-size: 250%;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: center;
+    opacity: 0.55;
 }

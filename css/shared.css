@@ -144,7 +144,7 @@ h5 {
 }
 
 .mobileOnly {
-    display: none;
+    display: none !important;
 }
 
 
@@ -166,7 +166,7 @@ h5 {
 
 
     .desktopOnly {
-        display: none;
+        display: none !important;
     }
 
     .mobileOnly {

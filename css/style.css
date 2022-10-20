@@ -288,10 +288,10 @@
 
 .hiddenDealerCard {
     padding: 5px;
+    margin: 0px 5px;
     display: inline-block;
     height: 108px;
     width: 72px;
-
     background-color: #dc4c16;
     border-radius: 10px;
     border: 1px #999 solid;

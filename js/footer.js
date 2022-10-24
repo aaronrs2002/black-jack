@@ -5,7 +5,7 @@ document.getElementById("year").innerHTML = "<i><label><a href='https://web-pres
     today.getFullYear() + "</a></label></i>";
 
 /*START THEMES*/
-const themesList = ["United", "Slate", "Cerulean", "Darkly", "Litera", "Materia", "Sandstone", "Superhero", "Cosmo", "Flatly", "Lumen", "Minty", "Simplex", "Solar", "Cyborg", "Journal", "Lux", "Pulse", "Sketchy", "Spacelab", "Yeti",];
+const themesList = ["Spacelab", "United", "Slate", "Cerulean", "Darkly", "Litera", "Materia", "Sandstone", "Superhero", "Cosmo", "Flatly", "Lumen", "Minty", "Simplex", "Solar", "Cyborg", "Journal", "Lux", "Pulse", "Sketchy", "Yeti",];
 let chosenTheme;
 
 /*START THEMES*/
@@ -59,8 +59,8 @@ if (localStorage.getItem("theme")) {
     setGameLinks(localStorage.getItem("theme"));
     document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + localStorage.getItem("theme") + "/bootstrap.css");
 } else {
-    setGameLinks("united");
-    localStorage.setItem("theme", "united");
+    setGameLinks("spacelab");
+    localStorage.setItem("theme", "spacelab");
 }
 
 //END THEMES

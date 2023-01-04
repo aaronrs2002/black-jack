@@ -11,7 +11,7 @@ let chosenTheme;
 /*START THEMES*/
 //START GAME LINKS
 const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/?theme=", game: "Poker" },
-{ link: "https://aaronrs2002.github.io/craps/?theme=", game: "Craps" },
+{ link: "https://aaronrs2002.github.io/bingo/?theme=", game: "Bingo" },
 { link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/?theme=", game: "WordFun" }];
 let url = window.location;
 let themeVal = {};

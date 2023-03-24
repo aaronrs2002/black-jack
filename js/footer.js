@@ -62,7 +62,7 @@ if (localStorage.getItem("theme")) {
     setGameLinks("spacelab");
     localStorage.setItem("theme", "spacelab");
 }
-document.querySelector("#themes option:first-child").innerHTML = "Theme: " + localStorage.getItem("theme");
+document.querySelector("#themes option:first-child").innerHTML = "Selected theme: " + localStorage.getItem("theme");
 //END THEMES
 
 

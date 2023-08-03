@@ -7,16 +7,16 @@ document.getElementById("year").innerHTML = "<i><label><a href='https://web-pres
 /*START THEMES*/
 const themesList = ["Spacelab", "United", "Slate", "Cerulean", "Darkly", "Litera", "Materia", "Sandstone", "Superhero", "Cosmo", "Flatly", "Lumen", "Minty", "Simplex", "Solar", "Cyborg", "Journal", "Lux", "Pulse", "Sketchy", "Yeti",];
 let chosenTheme;
-
-/*START THEMES*/
-//START GAME LINKS
-const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/?theme=", game: "Poker" },
-{ link: "https://aaronrs2002.github.io/bingo/?theme=", game: "Bingo" },
-{ link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/?theme=", game: "WordFun" }];
 let url = window.location;
 let themeVal = {};
 let themeOptions = "<option value='default'>Select Theme</option>";
-
+let gaParam = "";
+if (url.toString().indexOf("exclude") !== -1) {
+    gaParam = "exclude=true";
+}
+const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?" + gaParam + "&theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/?" + gaParam + "&theme=", game: "Poker" },
+{ link: "https://aaronrs2002.github.io/bingo/?" + gaParam + "&theme=", game: "Bingo" },
+{ link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?" + gaParam + "&theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/?" + gaParam + "&theme=", game: "WordFun" }];
 
 for (let i = 0; i < themesList.length; i++) {
     themeOptions = themeOptions + "<option value='" + themesList[i].toLocaleLowerCase() + "'>Theme: <span class='capitalize'>" + themesList[i] + "</span></option>";

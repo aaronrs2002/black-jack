@@ -24,6 +24,10 @@ for (let i = 0; i < themesList.length; i++) {
 document.getElementById("themes").innerHTML = themeOptions;
 
 function changeTheme() {
+    let gaParam = "";
+    if (url.toString().indexOf("exclude") !== -1) {
+        gaParam = "exclude=true";
+    }
     let whichTheme = document.getElementById("themes").value;
     if (whichTheme === "default") {
         return false;
@@ -32,7 +36,7 @@ function changeTheme() {
         chosenTheme = whichTheme.replace("https://bootswatch.com/5/", "").replace("/bootstrap.css");
         localStorage.setItem("theme", chosenTheme);
         //setGameLinks(chosenTheme);
-        window.location = "?theme=" + chosenTheme + "&balance=" + localStorage.getItem("balance") + "&";
+        window.location = "?" + gaParam + "&theme=" + chosenTheme + "&balance=" + localStorage.getItem("balance") + "&";
     }
 
 }

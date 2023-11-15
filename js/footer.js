@@ -88,20 +88,15 @@ function setGameLinks() {
     for (let i = 0; i < gameLinks.length; i++) {
         let active = "";
         let hrefStr = gameLinks[i].game.toLowerCase();
-        // const lastSlash = hrefStr.indexOf("?");
-        // hrefStr = hrefStr.substring(0, lastSlash);
         let color = "warning";
         if (hrefStr === "21") hrefStr = "black-jack";
         if (hrefStr === "poker") hrefStr = "texas-holdem";
-        if (hrefStr === "texas-holdem") hrefStr = "poker";
+        if (hrefStr === "texas-holdem") hrefStr = "texas-holdem";
         if (hrefStr === "wordfun") hrefStr = "word-";
         if (hrefStr === "slots") hrefStr = "javascript-slot-machine";
         if (url.toString().indexOf(hrefStr) !== -1) {
-            console.log("we got there on: " + hrefStr);
             active = "active";
             color = "primary";
-        } else {
-            console.log("Not there: " + hrefStr);
         }
         gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-" + color + " " + active + "'>" + gameLinks[i].game + "</button>";
     }

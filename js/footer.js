@@ -87,10 +87,11 @@ function setGameLinks() {
     let gameHTML = "";
     for (let i = 0; i < gameLinks.length; i++) {
         let active = "";
-        let hrefStr = gameLinks[i].link.toString();
-        // const lastSlash = hrefStr.lastIndexOf("/");
+        let hrefStr = gameLinks[i].game;
+        // const lastSlash = hrefStr.indexOf("?");
         // hrefStr = hrefStr.substring(0, lastSlash);
         let color = "warning";
+        if (hrefStr === "21") hrefStr = "black-jack";
         if (url.toString().indexOf(hrefStr) !== -1) {
             console.log("we got there on: " + hrefStr);
             active = "active";

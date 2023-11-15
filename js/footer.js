@@ -87,7 +87,7 @@ function setGameLinks() {
     let gameHTML = "";
     for (let i = 0; i < gameLinks.length; i++) {
         let active = "";
-        let hrefStr = gameLinks[i].game;
+        let hrefStr = gameLinks[i].game.toLowerCase();
         // const lastSlash = hrefStr.indexOf("?");
         // hrefStr = hrefStr.substring(0, lastSlash);
         let color = "warning";

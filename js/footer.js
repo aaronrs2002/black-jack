@@ -93,7 +93,8 @@ function setGameLinks() {
         let color = "warning";
         if (hrefStr === "21") hrefStr = "black-jack";
         if (hrefStr === "poker") hrefStr = "texas-holdem";
-        if (hrefStr === "wordfun") hrefStr = "word-game";
+        if (hrefStr === "texas-holdem") hrefStr = "poker";
+        if (hrefStr === "wordfun") hrefStr = "word-";
         if (hrefStr === "slots") hrefStr = "javascript-slot-machine";
         if (url.toString().indexOf(hrefStr) !== -1) {
             console.log("we got there on: " + hrefStr);

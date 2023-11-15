@@ -90,7 +90,7 @@ function setGameLinks() {
         let hrefStr = gameLinks[i].game.toLowerCase();
         let color = "warning";
         if (hrefStr === "21") hrefStr = "black-jack";
-        if (hrefStr === "poker" || hrefStr === "texas-holdem") hrefStr = "texas-holdem";
+        if (url.toString().indexOf("poker") !== -1) hrefStr = "texas-holdem";
         if (hrefStr === "wordfun") hrefStr = "word-";
         if (hrefStr === "slots") hrefStr = "javascript-slot-machine";
         if (url.toString().indexOf(hrefStr) !== -1) {

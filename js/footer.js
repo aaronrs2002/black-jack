@@ -92,7 +92,11 @@ function setGameLinks() {
         if (hrefStr === "21") hrefStr = "black-jack";
         if (hrefStr === "wordfun") hrefStr = "word-";
         if (hrefStr === "slots") hrefStr = "javascript-slot-machine";
-        if (url.toString().indexOf("texas-holdem") !== -1 || url.toString().indexOf("poker") !== -1 && gameLinks[i].game.toLowerCase() === "poker") {
+        if (url.toString().indexOf("poker") !== -1 && gameLinks[i].game === "Poker") {
+            active = "active";
+            color = "primary";
+        }
+        if (url.toString().indexOf("texas-holdem") !== -1 && gameLinks[i].game == "Poker") {
             active = "active";
             color = "primary";
         }

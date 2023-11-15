@@ -88,12 +88,17 @@ function setGameLinks() {
     for (let i = 0; i < gameLinks.length; i++) {
         let active = "";
         let hrefStr = gameLinks[i].link.toString();
-        const lastSlash = hrefStr.lastIndexOf("/");
-        hrefStr = hrefStr.substring(0, lastSlash);
+        // const lastSlash = hrefStr.lastIndexOf("/");
+        // hrefStr = hrefStr.substring(0, lastSlash);
+        let color = "warning";
         if (url.toString().indexOf(hrefStr) !== -1) {
+            console.log("we got there on: " + hrefStr);
             active = "active";
+            color = "primary";
+        } else {
+            console.log("Not there: " + hrefStr);
         }
-        gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-secondary " + active + "'>" + gameLinks[i].game + "</button>";
+        gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-" + color + " " + active + "'>" + gameLinks[i].game + "</button>";
     }
     document.querySelector("#gameLinks").innerHTML = gameHTML;
 }

@@ -14,12 +14,6 @@ p {
     padding: 0px;
 }
 
-#gameLinks .btn,
-.btn,
-.playerHandDetails {
-    text-shadow: 1px 1px 1px #333 !important;
-}
-
 .error {
     border: 1px #ff0000 solid;
 }

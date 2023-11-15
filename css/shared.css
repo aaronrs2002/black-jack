@@ -14,7 +14,9 @@ p {
     padding: 0px;
 }
 
-.btn {
+#gameLinks .btn,
+.btn,
+.playerHandDetails {
     text-shadow: 1px 1px 1px #333 !important;
 }
 

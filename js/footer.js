@@ -90,13 +90,12 @@ function setGameLinks() {
         let hrefStr = gameLinks[i].game.toLowerCase();
         let color = "warning";
         if (hrefStr === "21") hrefStr = "black-jack";
-        if (url.toString().indexOf("texas-holdem") !== -1) hrefStr = "poker";
         if (hrefStr === "wordfun") hrefStr = "word-";
         if (hrefStr === "slots") hrefStr = "javascript-slot-machine";
-        if (url.toString().indexOf(hrefStr) !== -1) {
-            console.log("Found: " + hrefStr);
+        if ((url.toString().indexOf("texas-holdem") !== -1 || url.toString().indexOf("poker") !== -1 && gameLinks[i].game.toLowerCase() === "poker") || url.toString().indexOf(hrefStr) !== -1) {
             active = "active";
             color = "primary";
+
         } else {
             console.log("Not found: " + hrefStr + " - gameLinks[i].game.toLowerCase(): " + gameLinks[i].game.toLowerCase());
         }

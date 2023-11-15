@@ -94,8 +94,11 @@ function setGameLinks() {
         if (hrefStr === "wordfun") hrefStr = "word-";
         if (hrefStr === "slots") hrefStr = "javascript-slot-machine";
         if (url.toString().indexOf(hrefStr) !== -1) {
+            console.log("Found: " + hrefStr);
             active = "active";
             color = "primary";
+        } else {
+            console.log("Not found: " + hrefStr);
         }
         gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-" + color + " " + active + "'>" + gameLinks[i].game + "</button>";
     }

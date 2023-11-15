@@ -101,11 +101,8 @@ function setGameLinks() {
             color = "primary";
         }
         if (url.toString().indexOf(hrefStr) !== -1) {
-            console.log("Found: " + hrefStr);
             active = "active";
             color = "primary";
-        } else {
-            console.log("Not found: " + hrefStr + " - gameLinks[i].game.toLowerCase(): " + gameLinks[i].game.toLowerCase());
         }
         gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-" + color + " " + active + "'>" + gameLinks[i].game + "</button>";
     }

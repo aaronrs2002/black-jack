@@ -127,7 +127,7 @@ function tadaRollout(element) {
 const socialMedia = [
     { link: "https://www.linkedin.com/in/aaronrs2002", theClass: "fab fa-linkedin" },
     { link: "https://github.com/aaronrs2002", theClass: "fab fa-github" },
-    { link: "https://www.youtube.com/channel/UC_cqZ5WhobgOTFjRqcZKgKg", theClass: "fab fa-youtube" },
+    { link: "https://www.youtube.com/@web-presence-developer", theClass: "fab fa-youtube" },
     { link: "https://www.instagram.com/aaronrs2002/", theClass: "fab fa-instagram" },
     { link: "mailto:aaron@web-presence.biz", theClass: "far fa-paper-plane" }
 ];

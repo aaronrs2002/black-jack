@@ -60,8 +60,13 @@ function changeTheme() {
         }
     });
 if (localStorage.getItem("theme")) {
+    let needAddress = "https://bootswatch.com/5/";
+    if (localStorage.getItem("theme").indexOf("boot") !== -1) {
+        needAddress = "";
+    }
     setGameLinks(localStorage.getItem("theme"));
-    document.getElementById("themedStyle").setAttribute("href", "https://bootswatch.com/5/" + localStorage.getItem("theme") + "/bootstrap.css");
+
+    document.getElementById("themedStyle").setAttribute("href", needAddress + localStorage.getItem("theme") + "/bootstrap.css");
 } else {
     setGameLinks("spacelab");
     localStorage.setItem("theme", "spacelab");

@@ -61,22 +61,25 @@ function changeTheme() {
             }
         }
     });
+let tempTheme = localStorage.getItem("theme");
 if (localStorage.getItem("theme")) {
+
     let needAddress = "https://bootswatch.com/5/";
     if (localStorage.getItem("theme").indexOf("boot") !== -1) {
         needAddress = "";
     }
     setGameLinks(localStorage.getItem("theme"));
-    if (pair[1].indexOf("bootstrap.css") !== -1) {
-        pair[1] = pair[1].replace("/bootstrap.css", "");
+
+    if (tempTheme.indexOf("bootstrap.css") !== -1) {
+        tempTheme = tempTheme.replace("/bootstrap.css", "");
     }
 
-    document.getElementById("themedStyle").setAttribute("href", needAddress + localStorage.getItem("theme") + "/bootstrap.css");
+    document.getElementById("themedStyle").setAttribute("href", needAddress + tempTheme + "/bootstrap.css");
 } else {
     setGameLinks("spacelab");
     localStorage.setItem("theme", "spacelab");
 }
-document.querySelector("#themes option:first-child").innerHTML = "Selected theme: " + localStorage.getItem("theme");
+document.querySelector("#themes option:first-child").innerHTML = "Selected theme: " + tempTheme;
 //END THEMES
 
 

@@ -49,7 +49,9 @@ function changeTheme() {
         if (pair[0].length) {
             themeVal[pair[0]] = pair[1];
             if (pair[0] === "theme") {
+
                 const themeFromUrl = "https://bootswatch.com/5/" + pair[1] + "/bootstrap.css";
+
                 document.getElementById("themedStyle").setAttribute("href", themeFromUrl);
                 localStorage.setItem("theme", pair[1]);
             }
@@ -65,6 +67,9 @@ if (localStorage.getItem("theme")) {
         needAddress = "";
     }
     setGameLinks(localStorage.getItem("theme"));
+    if (pair[1].indexOf("bootstrap.css") !== -1) {
+        pair[1] = pair[1].replace("/bootstrap.css", "");
+    }
 
     document.getElementById("themedStyle").setAttribute("href", needAddress + localStorage.getItem("theme") + "/bootstrap.css");
 } else {

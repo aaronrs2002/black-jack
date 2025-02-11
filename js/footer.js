@@ -137,17 +137,19 @@ function tadaRollout(element) {
 
 //START SOCIAL MEDIA
 const socialMedia = [
-    { link: "https://www.linkedin.com/in/aaronrs2002", theClass: "fab fa-linkedin" },
-    { link: "https://github.com/aaronrs2002", theClass: "fab fa-github" },
-    { link: "https://www.youtube.com/@web-presence-developer", theClass: "fab fa-youtube" },
-    { link: "https://www.instagram.com/aaronrs2002/", theClass: "fab fa-instagram" },
-    { link: "mailto:aaron@web-presence.biz", theClass: "far fa-paper-plane" }
+    { link: "https://www.linkedin.com/in/aaronrs2002", theClass: "fab fa-linkedin", title: "My Linkedin Profile" },
+    { link: "https://github.com/aaronrs2002", theClass: "fab fa-github", title: "My Open Source Library" },
+    { link: "https://www.youtube.com/@web-presence-developer", theClass: "fab fa-youtube", title: "Learn how to write web applications!" },
+    { link: "https://www.instagram.com/aaronrs2002/", theClass: "fab fa-instagram", title: "Payoff from a multimedia degree." },
+    { link: "https://aaronrs2002.github.io/task-master/", theClass: "fas fa-network-wired", title: "Networked serverless web apps for Workflow Management and Accounting" }
+    //{ link: "mailto:aaron@web-presence.biz", theClass: "far fa-paper-plane" }
+    //    { title: "ticket management and accounting software by: Aaron Smith ", target: "_blank", url: "https://aaronrs2002.github.io/task-master/", iconClass: "fas fa-network-wired" },
 ];
 
 let socialHTML = "";
 for (let i = 0; i < socialMedia.length; i++) {
     socialHTML = socialHTML + `<a class="p-2 text-primary"  href="${socialMedia[i].link
-        }" target="_blank" title="${socialMedia[i].link}" ><i class="${socialMedia[i].theClass
+        }" target="_blank" title="${socialMedia[i].title}" ><i class="${socialMedia[i].theClass
         } animated"  onmouseover="javascript:tadaRollover('${socialMedia[i].theClass
         }')" onmouseout="javascript:tadaRollout('${socialMedia[i].theClass
         }')" data-tada="${socialMedia[i].theClass

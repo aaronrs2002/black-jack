@@ -1,7 +1,7 @@
 
 /*FOOTER DATE*/
 const today = new Date();
-document.getElementById("year").innerHTML = "<i><small><a href='https://web-presence.biz/?src=web-presence-games#contact' class='text-primary' target='_bank'>	Need a web developer? Contact me.</a></small></i>";
+document.getElementById("year").innerHTML = "<i><small><a href='https://web-presence.biz/?src=web-presence-games#contact' class='text-primary' target='_bank'><i class='fas fa-paper-plane'></i> Contact me.</a></small></i>";
 
 /*START THEMES*/
 const themesList = ["Spacelab", "United", "Slate", "Cerulean", "Darkly", "Litera", "Materia", "Sandstone", "Superhero", "Cosmo", "Flatly", "Lumen", "Minty", "Simplex", "Solar", "Cyborg", "Journal", "Lux", "Pulse", "Sketchy", "Yeti", "Morph", "Quartz", "Vapor", "Zephyr"];

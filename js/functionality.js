@@ -57,10 +57,19 @@ function showAlert(status, message, type) {
     }
     if (status !== "split") {
         if (status === "win") {
+
+
+            if (document.querySelector("#status.alert-info")) {
+                document.querySelector("#status").classList.remove("alert-info");
+            }
+
             playerMoney = (playerMoney + bet);
             playSound(winSound);
         }
         if (status === "black-jack") {
+            if (document.querySelector("#status.alert-info")) {
+                document.querySelector("#status").classList.remove("alert-info");
+            }
             playerMoney = (playerMoney + (bet * 1.5));
             playSound(winSound);
         }

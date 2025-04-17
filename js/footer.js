@@ -142,8 +142,7 @@ const socialMedia = [
     { link: "https://www.youtube.com/@web-presence-developer", theClass: "fab fa-youtube", title: "Learn how to write web applications!" },
     { link: "https://www.instagram.com/aaronrs2002/", theClass: "fab fa-instagram", title: "Payoff from a multimedia degree." },
     { link: "https://aaronrs2002.github.io/task-master/", theClass: "fas fa-network-wired", title: "Networked serverless web apps for Workflow Management and Accounting" },
-    { link: "    https://aaronrs2002.github.io/rss-aggregator/", theClass: "fa-solid fa-square-rss", title: "Free News Aggregator. Grab any public RSS feed and display it here without advertising and without your boss tracking you." },
-
+    { link: "    https://aaronrs2002.github.io/rss-aggregator/", theClass: "fas fa-rss-square", title: "Free News Aggregator. Grab any public RSS feed and display it here without advertising and without your boss tracking you." },
 
     //{ link: "mailto:aaron@web-presence.biz", theClass: "far fa-paper-plane" }
     //    { title: "ticket management and accounting software by: Aaron Smith ", target: "_blank", url: "https://aaronrs2002.github.io/task-master/", iconClass: "fas fa-network-wired" },

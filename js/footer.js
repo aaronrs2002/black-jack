@@ -11,11 +11,11 @@ let themeVal = {};
 let themeOptions = "<option value='default'>Select Theme</option>";
 let gaParam = "";
 if (url.toString().indexOf("exclude") !== -1) {
-    gaParam = "exclude=true";
+    gaParam = "?exclude=true&";
 }
-const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?" + gaParam + "&theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/?" + gaParam + "&theme=", game: "Poker" },
-{ link: "https://aaronrs2002.github.io/bingo/?" + gaParam + "&theme=", game: "Bingo" },
-{ link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html?" + gaParam + "&theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/?" + gaParam + "&theme=", game: "WordFun" }];
+const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/" + gaParam + "theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/" + gaParam + "theme=", game: "Poker" },
+{ link: "https://aaronrs2002.github.io/bingo/" + gaParam + "theme=", game: "Bingo" },
+{ link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html" + gaParam + "theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/" + gaParam + "theme=", game: "WordFun" }];
 
 for (let i = 0; i < themesList.length; i++) {
     themeOptions = themeOptions + "<option value='" + themesList[i].toLocaleLowerCase() + "'>Theme: <span class='capitalize'>" + themesList[i] + "</span></option>";
@@ -150,7 +150,7 @@ const socialMedia = [
 
 let socialHTML = "";
 for (let i = 0; i < socialMedia.length; i++) {
-    socialHTML = socialHTML + `<a class="p-2 text-primary"  href="${socialMedia[i].link
+    socialHTML = socialHTML + `<a class="p-2 text-primary"  href="${socialMedia[i].link + gaParam
         }" target="_blank" title="${socialMedia[i].title}" ><i class="${socialMedia[i].theClass
         } animated"  onmouseover="javascript:tadaRollover('${socialMedia[i].theClass
         }')" onmouseout="javascript:tadaRollout('${socialMedia[i].theClass

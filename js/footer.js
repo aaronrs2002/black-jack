@@ -9,7 +9,7 @@ let chosenTheme;
 let url = window.location;
 let themeVal = {};
 let themeOptions = "<option value='default'>Select Theme</option>";
-let gaParam = "";
+let gaParam = "?";
 if (url.toString().indexOf("exclude") !== -1) {
     gaParam = "?exclude=true&";
 }

@@ -9,13 +9,13 @@ let chosenTheme;
 let url = window.location;
 let themeVal = {};
 let themeOptions = "<option value='default'>Select Theme</option>";
-let gaParam = "?";
+let gaParam = "";
 if (url.toString().indexOf("exclude") !== -1) {
     gaParam = "?exclude=true&";
 }
-const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/" + gaParam + "theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/" + gaParam + "theme=", game: "Poker" },
-{ link: "https://aaronrs2002.github.io/bingo/" + gaParam + "theme=", game: "Bingo" },
-{ link: "https://aaronrs2002.github.io/javascript-slot-machine/index.html" + gaParam + "theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/" + gaParam + "theme=", game: "WordFun" }];
+const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?" + gaParam + "theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/?" + gaParam + "theme=", game: "Poker" },
+{ link: "https://aaronrs2002.github.io/bingo/?" + gaParam + "theme=", game: "Bingo" },
+{ link: "https://aaronrs2002.github.io/javascript-slot-machine/?" + gaParam + "theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/?" + gaParam + "theme=", game: "WordFun" }];
 
 for (let i = 0; i < themesList.length; i++) {
     themeOptions = themeOptions + "<option value='" + themesList[i].toLocaleLowerCase() + "'>Theme: <span class='capitalize'>" + themesList[i] + "</span></option>";
@@ -141,8 +141,8 @@ const socialMedia = [
     { link: "https://github.com/aaronrs2002", theClass: "fab fa-github", title: "My Open Source Library" },
     { link: "https://www.youtube.com/@web-presence-developer", theClass: "fab fa-youtube", title: "Learn how to write web applications!" },
     { link: "https://www.instagram.com/aaronrs2002/", theClass: "fab fa-instagram", title: "Payoff from a multimedia degree." },
-    { link: "https://aaronrs2002.github.io/task-master/", theClass: "fas fa-network-wired", title: "Networked serverless web apps for Workflow Management and Accounting" },
-    { link: "    https://aaronrs2002.github.io/rss-aggregator/", theClass: "fas fa-rss-square", title: "Free News Aggregator. Grab any public RSS feed and display it here without advertising and without your boss tracking you." },
+    { link: "https://aaronrs2002.github.io/task-master/?", theClass: "fas fa-network-wired", title: "Networked serverless web apps for Workflow Management and Accounting" },
+    { link: "    https://aaronrs2002.github.io/rss-aggregator/?", theClass: "fas fa-rss-square", title: "Free News Aggregator. Grab any public RSS feed and display it here without advertising and without your boss tracking you." },
 
     //{ link: "mailto:aaron@web-presence.biz", theClass: "far fa-paper-plane" }
     //    { title: "ticket management and accounting software by: Aaron Smith ", target: "_blank", url: "https://aaronrs2002.github.io/task-master/", iconClass: "fas fa-network-wired" },

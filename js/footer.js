@@ -11,7 +11,7 @@ let themeVal = {};
 let themeOptions = "<option value='default'>Select Theme</option>";
 let gaParam = "";
 if (url.toString().indexOf("exclude") !== -1) {
-    gaParam = "?exclude=true&";
+    gaParam = "exclude=true&";
 }
 const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?" + gaParam + "theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/?" + gaParam + "theme=", game: "Poker" },
 { link: "https://aaronrs2002.github.io/bingo/?" + gaParam + "theme=", game: "Bingo" },

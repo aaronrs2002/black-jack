@@ -150,7 +150,7 @@ const socialMedia = [
 
 let socialHTML = "";
 for (let i = 0; i < socialMedia.length; i++) {
-    socialHTML = socialHTML + `<a class="p-2 text-primary"  href="${socialMedia[i].link + gaParam
+    socialHTML = socialHTML + `<a class="p-2 text-primary"  href="${socialMedia[i].link + (socialMedia[i].link.indexOf("?") !== -1 ? gaParam : "")
         }" target="_blank" title="${socialMedia[i].title}" ><i class="${socialMedia[i].theClass
         } animated"  onmouseover="javascript:tadaRollover('${socialMedia[i].theClass
         }')" onmouseout="javascript:tadaRollout('${socialMedia[i].theClass

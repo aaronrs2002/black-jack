@@ -119,7 +119,11 @@ function setGameLinks() {
         }
         gameHTML = gameHTML + "<button onClick='javascript:navigateGames(" + i + ")' class='btn btn-" + color + " " + active + "'>" + gameLinks[i].game + "</button>";
     }
-    document.querySelector("#gameLinks").innerHTML = gameHTML;
+
+    if (document.querySelector("#gameLinks")) {
+        document.querySelector("#gameLinks").innerHTML = gameHTML;
+    }
+
 }
 
 /*START NAVIGATING ANIMATION*/

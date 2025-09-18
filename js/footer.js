@@ -59,6 +59,11 @@ function changeTheme() {
                 localStorage.setItem("balance", pair[1].replace("#", ""));
 
             }
+
+            if (pair[0] === "ytkey") {
+                localStorage.setItem("ytkey", pair[1].replace("#", ""));
+
+            }
         }
     });
 let tempTheme = localStorage.getItem("theme");

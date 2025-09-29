@@ -42,13 +42,29 @@
         <span id="audio"></span>
         <div class="row">
             <div class="btn-group form-control mb-2  animated fadeInDown" role="group" alt="Play Blackjack Online">
-                <button type="button" class="btn btn-primary dealAmt" alt="1" onClick="deal(Number(1))">$1</button>
+
+                <!--  <div class="input-group mb-3">
+                    <input type="text" name="anyAmount" placeholder="Any Amount" onKeyUp="updateBetAny()">
+                    <span class="input-group-text pointer dealAmt" alt="any" id="betAny"
+                        onClick="deal('any')">Bet</span>
+                </div>-->
+                <button type="button" class="btn btn-primary dealAmt" alt="any" id="betAny"
+                    onClick="toggle('anyAmount')">Any
+                    $</button>
                 <button type="button" class="btn btn-primary dealAmt" alt="5" onClick="deal(Number(5))">$5</button>
                 <button type="button" class="btn btn-primary dealAmt" alt="10" onClick="deal(Number(10))">$10</button>
                 <button type="button" class="btn btn-primary dealAmt" alt="25" onClick="deal(Number(25))">$25</button>
                 <button type="button" class="btn btn-primary dealAmt" alt="50" onClick="deal(Number(50))">$50</button>
                 <button type="button" class="btn btn-primary dealAmt" alt="100"
                     onClick="deal(Number(100))">$100</button>
+            </div>
+            <div class="col-md-12 hide" data-toggle="anyAmount">
+
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" name="anyAmount"
+                        placeholder="Any Amount numerical characters only please." onKeyUp="updateBetAny()">
+                    <button class="btn btn-primary" onClick="deal('any')">Bet</button>
+                </div>
             </div>
             <div class="col-md-12">
                 <div class="alert alert-info" role="alert">

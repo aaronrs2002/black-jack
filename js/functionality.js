@@ -129,7 +129,25 @@ function ckInsurance(card1, card2) {
     }
 }
 
+
+function updateBetAny() {
+
+    let anyNum = document.querySelector("[name='anyAmount']").value;
+    document.getElementById("betAny").setAttribute("alt", anyNum);
+
+
+}
+
 function deal(playerBet) {
+    if (playerBet === "any") {
+        playerBet = Number(document.querySelector("[name='anyAmount']").value);
+        console.log("Number.isNaN(playerBet): " + Number.isNaN(playerBet));
+        console.log("(typeof playerBet): " + (typeof playerBet));
+
+        document.getElementById("betAny").setAttribute("alt", playerBet);
+        document.querySelector("[name='anyAmount']").value = "";
+        toggle("");
+    }
     enableBts();
     splitActive = false;
     splitCards0 = [];

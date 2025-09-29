@@ -184,6 +184,17 @@ function globalAlert(alertLevel, message) {
 
 }
 
+/*START GLOBAL ANY BET AMOUNT key up */
+function updateBetAny() {
+    let anyNum = document.querySelector("[name='anyAmount']").value;
+    if (anyNum < 0) {
+        globalAlert("alert-warning", "Bet with a number above zero.");
+        document.querySelector("[name='anyAmount']").value = anyNum.replaceAll("-", "");
+        return false;
+    }
+    document.getElementById("betAny").setAttribute("alt", anyNum);
+}
+
 /*START GLOBAL TOGGLE FUNCTION*/
 
 function toggle(element) {

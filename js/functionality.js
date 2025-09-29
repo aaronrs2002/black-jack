@@ -146,8 +146,9 @@ function deal(playerBet) {
 
         document.getElementById("betAny").setAttribute("alt", playerBet);
         document.querySelector("[name='anyAmount']").value = "";
-        toggle("");
+
     }
+    toggle("");
     enableBts();
     splitActive = false;
     splitCards0 = [];

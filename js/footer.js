@@ -184,6 +184,10 @@ function globalAlert(alertLevel, message) {
 
 }
 
+function focusOnField(whichField) {
+    document.querySelector("[name='" + whichField + "']").focus();
+}
+
 /*START GLOBAL ANY BET AMOUNT key up */
 function updateBetAny() {
     let anyNum = document.querySelector("[name='anyAmount']").value;

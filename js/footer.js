@@ -36,7 +36,8 @@ function changeTheme() {
         chosenTheme = whichTheme.replace("https://bootswatch.com/5/", "").replace("/bootstrap.css");
         localStorage.setItem("theme", chosenTheme);
         //setGameLinks(chosenTheme);
-        window.location = "?" + gaParam + "&theme=" + chosenTheme + "&balance=" + localStorage.getItem("balance") + "&";
+        //  window.location = "?" + gaParam + "&theme=" + chosenTheme + "&balance=" + localStorage.getItem("balance") + "&";
+        window.location = "?" + gaParam + "&theme=" + chosenTheme + "&";
     }
 
 }
@@ -98,7 +99,8 @@ function navigateGames(selected) {
     if (localStorage.getItem("balance")) {
         balance = localStorage.getItem("balance");
     }
-    window.location.href = gameLinks[selected].link + setTheme + "&balance=" + balance + "&";
+    // window.location.href = gameLinks[selected].link + setTheme + "&balance=" + balance + "&";
+    window.location.href = gameLinks[selected].link + setTheme + "&";
 }
 
 function setGameLinks() {

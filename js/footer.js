@@ -14,7 +14,7 @@ function ckHighScore() {
         localStorage.setItem("highScore", currentBalance);
         highScore = currentBalance;
     }
-    document.getElementById("highScoreTarget").innerHTML = "Your High Score: " + highScore;
+    document.getElementById("highScoreTarget").innerHTML = "Your High Score: $" + highScore;
 }
 ckHighScore();
 document.getElementById("year").innerHTML = "<i><small><a href='https://web-presence.biz/?src=web-presence-games#contact' class='text-primary' target='_bank'><i class='fas fa-paper-plane'></i> Contact me.</a></small></i>";

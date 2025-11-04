@@ -57,7 +57,7 @@ function showAlert(status, message, type) {
     }
     if (status !== "split") {
         if (status === "win") {
-
+            ckHighScore();
 
             if (document.querySelector("#status.alert-info")) {
                 document.querySelector("#status").classList.remove("alert-info");
@@ -86,6 +86,7 @@ function showAlert(status, message, type) {
     document.getElementById("splitPlayBts").classList.add("hide");
     let splitArr = [0, 0];
     enableBts();
+    ckHighScore();
     return false;
 }
 

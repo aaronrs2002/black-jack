@@ -9,12 +9,12 @@ if (localStorage.getItem("highScore", highScore)) {
 
 function ckHighScore() {
     let currentBalance = Number(localStorage.getItem("balance"));
-    let highScore = Number(localStorage.getItem("highScore")); ƒ
+    let highScore = Number(localStorage.getItem("highScore"));
     if (currentBalance > highScore) {
         localStorage.setItem("highScore", currentBalance);
         highScore = currentBalance;
     }
-    document.getElementById("highScoreTarget").innerHTML = "Your highest: $" + highScore;
+    document.getElementById("highScoreTarget").innerHTML = "Your High Score: $" + highScore;
 }
 if (document.getElementById("highScoreTarget")) {
     ckHighScore();

@@ -14,7 +14,7 @@ function ckHighScore() {
         localStorage.setItem("highScore", currentBalance);
         highScore = currentBalance;
     }
-    document.getElementById("highScoreTarget").innerHTML = "Your High Score: $" + highScore;
+    document.getElementById("highScoreTarget").innerHTML = "High Score: $" + highScore;
 }
 if (document.getElementById("highScoreTarget")) {
     ckHighScore();

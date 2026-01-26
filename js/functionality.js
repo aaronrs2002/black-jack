@@ -37,7 +37,7 @@ function setPlayerMoney(passPlayerMoney, status, bet) {
                 bet = bet + 50;
                 break;
             case "split":
-                betrange = bet + bet;
+                bet = bet + bet;
                 break;
         }
         document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<h3>" : "<h3>You ") + status + " $" + bet + "</h3>";

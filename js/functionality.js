@@ -26,22 +26,16 @@ if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) 
 document.querySelector("#playerMoney").innerHTML = playerMoney;
 let bet = 0;
 function setPlayerMoney(passPlayerMoney, status, bet) {
-    let original = playerMoney;
-    playerMoney = passPlayerMoney;
+    console.log("passPlayerMoney: " + passPlayerMoney + " - status: " + status + " - bet: " + bet);
     document.getElementById("playerMoney").innerHTML = passPlayerMoney;
     document.querySelector("#playerMoney").innerHTML = passPlayerMoney;/*SAFARI BUG NEEDS BOTH*/
     localStorage.setItem("balance", passPlayerMoney);
+
     if (status && status !== "default") {
-        switch (status) {
-            case "black-jack":
-                bet = bet + 50;
-                break;
-            case "split":
-                bet = bet + bet;
-                break;
-        }
         document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<h3>" : "<h3>You ") + status + " $" + bet + "</h3>";
     }
+
+
 }
 
 /*END DOES NOT RESET AT DEAL*/
@@ -76,7 +70,7 @@ function showAlert(status, message, type) {
             }
 
             playerMoney = (playerMoney + bet);
-
+            setPlayerMoney(playerMoney, status, bet);
             playSound(winSound);
         }
         if (status === "black-jack") {
@@ -84,17 +78,20 @@ function showAlert(status, message, type) {
                 document.querySelector("#status").classList.remove("alert-info");
             }
             playerMoney = (playerMoney + (bet * 1.5));
+            setPlayerMoney(playerMoney, status, (bet * 1.5));
             playSound(winSound);
         }
         if (status === "lose") {
             playerMoney = (playerMoney - bet);
+            setPlayerMoney(playerMoney, status, -bet);
             playSound(lossSound);
+
         }
-        setPlayerMoney(playerMoney, status, bet);
+
 
 
     } else {
-        setPlayerMoney(playerMoney, status, bet);
+        setPlayerMoney(playerMoney, status, (bet + bet));
     }
     document.querySelector("button[alt='split']").disabled = false;
     document.querySelector("button[alt='doubleD']").disabled = false;

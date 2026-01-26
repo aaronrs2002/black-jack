@@ -40,7 +40,7 @@ function setPlayerMoney(passPlayerMoney, status, bet) {
                 betrange = bet + bet;
                 break;
         }
-        document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<h3>" : "<h3>You ") + status + " $" + betrange + "</h3>";
+        document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<h3>" : "<h3>You ") + status + " $" + bet + "</h3>";
     }
 }
 

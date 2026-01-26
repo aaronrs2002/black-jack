@@ -25,11 +25,29 @@ if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) 
 }
 document.querySelector("#playerMoney").innerHTML = playerMoney;
 let bet = 0;
-function setPlayerMoney(passPlayerMoney) {
+function setPlayerMoney(passPlayerMoney, status, bet) {
+    console.log("Status: " + status + " status.indexOf(YOU): " + status.indexOf("YOU"))
     playerMoney = passPlayerMoney;
     document.getElementById("playerMoney").innerHTML = passPlayerMoney;
     document.querySelector("#playerMoney").innerHTML = passPlayerMoney;/*SAFARI BUG NEEDS BOTH*/
     localStorage.setItem("balance", passPlayerMoney);
+
+    if (status && status !== "default") {
+        switch (status) {
+            case "default":
+                intro = "";
+                break;
+            case "black-jack":
+                intro = "<h3>You got";
+                break;
+
+            default:
+                intro = "<h3>You " + status
+        }
+
+        document.getElementById("lostWon").innerHTML = (status.indexOf("YOU") === 0 ? "<h3>" : "<h3>You ") + status + " $" + bet + "</h3>";
+    }
+
 }
 
 /*END DOES NOT RESET AT DEAL*/
@@ -64,6 +82,7 @@ function showAlert(status, message, type) {
             }
 
             playerMoney = (playerMoney + bet);
+
             playSound(winSound);
         }
         if (status === "black-jack") {
@@ -77,9 +96,11 @@ function showAlert(status, message, type) {
             playerMoney = (playerMoney - bet);
             playSound(lossSound);
         }
-        setPlayerMoney(playerMoney);
+        setPlayerMoney(playerMoney, status, bet);
+
+
     } else {
-        setPlayerMoney(playerMoney);
+        setPlayerMoney(playerMoney, status, bet);
     }
     document.querySelector("button[alt='split']").disabled = false;
     document.querySelector("button[alt='doubleD']").disabled = false;
@@ -119,7 +140,7 @@ function removeCards(dealerCards, playerCards) {
 }
 
 function ckInsurance(card1, card2) {
-    setPlayerMoney(playerMoney - 5);
+    setPlayerMoney(playerMoney - 5, null, null);
     if ((card1 + card2) === 21) {
         document.querySelector("[data-dealer='0']").classList.remove("hiddenDealerCard");
         document.querySelector("[data-dealer='0']").classList.add(dealerCards[0].title);
@@ -141,6 +162,7 @@ function deal(playerBet) {
     }
     toggle("");
     enableBts();
+    document.getElementById("lostWon").innerHTML = "";
     splitActive = false;
     splitCards0 = [];
     splitCards1 = [];
@@ -302,7 +324,7 @@ function stay(whichHand) {    //START STAY()
             bet = bet + bet;
             playerMoney = (playerMoney - bet);
         }
-        setPlayerMoney(playerMoney);
+        setPlayerMoney(playerMoney, splitMessage, bet);
 
     }
     if (splitActive === false) {

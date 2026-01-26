@@ -26,12 +26,21 @@ if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) 
 document.querySelector("#playerMoney").innerHTML = playerMoney;
 let bet = 0;
 function setPlayerMoney(passPlayerMoney, status, bet) {
+    let original = playerMoney;
     playerMoney = passPlayerMoney;
     document.getElementById("playerMoney").innerHTML = passPlayerMoney;
     document.querySelector("#playerMoney").innerHTML = passPlayerMoney;/*SAFARI BUG NEEDS BOTH*/
     localStorage.setItem("balance", passPlayerMoney);
     if (status && status !== "default") {
-        document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<h3>" : "<h3>You ") + status + " $" + (status === "split" ? (bet + bet) : bet) + "</h3>";
+        switch (status) {
+            case "black-jack":
+                bet = bet + 50;
+                break;
+            case "split":
+                betrange = bet + bet;
+                break;
+        }
+        document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<h3>" : "<h3>You ") + status + " $" + betrange + "</h3>";
     }
 }
 

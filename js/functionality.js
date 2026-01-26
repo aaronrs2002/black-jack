@@ -40,6 +40,9 @@ function setPlayerMoney(passPlayerMoney, status, bet) {
             case "black-jack":
                 intro = "<h3>You got";
                 break;
+            case "split":
+                bet = bet + bet;
+                break;
 
             default:
                 intro = "<h3>You " + status

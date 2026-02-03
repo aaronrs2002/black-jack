@@ -26,16 +26,17 @@ if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) 
 document.querySelector("#playerMoney").innerHTML = playerMoney;
 let bet = 0;
 function setPlayerMoney(passPlayerMoney, status, bet) {
-    console.log("passPlayerMoney: " + passPlayerMoney + " - status: " + status + " - bet: " + bet);
     document.getElementById("playerMoney").innerHTML = passPlayerMoney;
     document.querySelector("#playerMoney").innerHTML = passPlayerMoney;/*SAFARI BUG NEEDS BOTH*/
     localStorage.setItem("balance", passPlayerMoney);
-
     if (status && status !== "default") {
-        document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<h3>" : "<h3>You ") + status + " $" + bet + "</h3>";
+        if (status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) {
+            document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<label>" : "<label>You ") + status + " $" + bet + "</label>";
+        } else {
+            status = status.replace("split", ("TOTAL BET: $" + bet))
+            document.getElementById("lostWon").innerHTML = "<label class='text-uppercase'>" + status + "</label>";
+        }
     }
-
-
 }
 
 /*END DOES NOT RESET AT DEAL*/
@@ -91,7 +92,7 @@ function showAlert(status, message, type) {
 
 
     } else {
-        setPlayerMoney(playerMoney, status, (bet + bet));
+        setPlayerMoney(playerMoney, status, (bet * 2));
     }
     document.querySelector("button[alt='split']").disabled = false;
     document.querySelector("button[alt='doubleD']").disabled = false;
@@ -283,35 +284,35 @@ function stay(whichHand) {    //START STAY()
             playerMoney = (playerMoney + (bet * .5));
         }
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] <= 21) {
-            showAlert("split", "YOU WON. DEALER BUSTED!", "alert-success");
+            showAlert("split", " YOU WON. DEALER BUSTED!", "alert-success");
             playerMoney = (playerMoney + bet + bet);
         }
         if (dealerTotal > 21 && splitArr[0] > 21 && splitArr[1] <= 21) {/*you broke even playerMoney stays the same*/
-            showAlert("split", "YOU BUSTED HAND ONE THEN WON HAND 2. DEALER BUSTED!", "alert-success");
+            showAlert("split", " YOU BUSTED HAND ONE THEN WON HAND 2. DEALER BUSTED!", "alert-success");
         }
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] > 21) {/*you broke even playerMoney stays the same*/
-            showAlert("split", "YOU WON HAND ONE THEN BUSTED HAND 2. DEALER BUSTED!", "alert-success");
+            showAlert("split", " YOU WON HAND ONE THEN BUSTED HAND 2. DEALER BUSTED!", "alert-success");
         }
 
         if (dealerTotal <= 21) {
             for (let i = 0; i < splitArr.length; i++) {
                 if (dealerTotal < splitArr[i] && splitArr[i] <= 21) {
                     playerMoney = (playerMoney + bet);
-                    splitMessage = splitMessage + "YOU WON HAND " + (i + 1) + ". ";
+                    splitMessage = splitMessage + " YOU WON HAND " + (i + 1) + " +$" + bet + " ";
                 }
                 if (dealerTotal > splitArr[i] || splitArr[i] > 21) {
                     playerMoney = (playerMoney - bet);
-                    splitMessage = splitMessage + "YOU LOST HAND " + (i + 1) + ". ";
+                    splitMessage = splitMessage + " YOU LOST HAND " + (i + 1) + " -$" + bet + " ";
                 }
                 if (dealerTotal === splitArr[i] && splitArr[i] <= 21) {
-                    splitMessage = splitMessage + "YOU PUSHED HAND " + (i + 1) + ". ";
+                    splitMessage = splitMessage + " YOU PUSHED HAND " + (i + 1) + " ";
                 }
 
             }
             showAlert("split", splitMessage, "alert-primary");
         }
         else if (splitArr[0] > 21 && splitArr[1] > 21 && splitMessage.length === 0) {
-            showAlert("split", "YOU BUSTED BOTH HANDS!", "alert-danger");
+            showAlert("split", " YOU BUSTED BOTH HANDS!", "alert-danger");
             bet = bet + bet;
             playerMoney = (playerMoney - bet);
         }

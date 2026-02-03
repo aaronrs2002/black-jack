@@ -30,7 +30,8 @@ function setPlayerMoney(passPlayerMoney, status, bet) {
     document.querySelector("#playerMoney").innerHTML = passPlayerMoney;/*SAFARI BUG NEEDS BOTH*/
     localStorage.setItem("balance", passPlayerMoney);
     if (status && status !== "default") {
-        if (status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) {
+        console.log("status: " + status);
+        if (status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0 || status.indexOf("win") === 0 || status.indexOf("lose") === 0) {
             document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<label>" : "<label>You ") + status + " $" + bet + "</label>";
         } else {
             status = status.replace("split", ("TOTAL BET: $" + bet))

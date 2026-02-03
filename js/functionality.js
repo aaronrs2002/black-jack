@@ -299,11 +299,11 @@ function stay(whichHand) {    //START STAY()
             for (let i = 0; i < splitArr.length; i++) {
                 if (dealerTotal < splitArr[i] && splitArr[i] <= 21) {
                     playerMoney = (playerMoney + bet);
-                    splitMessage = splitMessage + " YOU WON HAND " + (i + 1) + " +$" + bet + " ";
+                    splitMessage = splitMessage + " YOU WON HAND " + (i + 1) + " $+" + bet + " ";
                 }
                 if (dealerTotal > splitArr[i] || splitArr[i] > 21) {
                     playerMoney = (playerMoney - bet);
-                    splitMessage = splitMessage + " YOU LOST HAND " + (i + 1) + " -$" + bet + " ";
+                    splitMessage = splitMessage + " YOU LOST HAND " + (i + 1) + " $-" + bet + " ";
                 }
                 if (dealerTotal === splitArr[i] && splitArr[i] <= 21) {
                     splitMessage = splitMessage + " YOU PUSHED HAND " + (i + 1) + " ";

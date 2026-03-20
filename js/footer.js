@@ -31,10 +31,18 @@ let themeOptions = "<option value='default'>Select Theme</option>";
 let gaParam = "";
 if (url.toString().indexOf("exclude") !== -1) {
     gaParam = "exclude=true&";
+    console.log("gaParam: " + gaParam);
+} else {
+    console.log("No Exclude gaParam: " + gaParam);
 }
-const gameLinks = [{ link: "https://aaronrs2002.github.io/black-jack/?" + gaParam + "theme=", game: "21" }, { link: "https://aaronrs2002.github.io/texas-holdem/?" + gaParam + "theme=", game: "Poker" },
-{ link: "https://aaronrs2002.github.io/bingo/?" + gaParam + "theme=", game: "Bingo" },
-{ link: "https://aaronrs2002.github.io/javascript-slot-machine/?" + gaParam + "theme=", game: "Slots" }, { link: "https://aaronrs2002.github.io/word-game/?" + gaParam + "theme=", game: "WordFun" }, { link: "https://aaronrs2002.github.io/battleship/?" + + gaParam + "theme=", game: "Battleship" }];
+const gameLinks = [
+    { link: "https://aaronrs2002.github.io/black-jack/?" + gaParam + "theme=", game: "21" },
+    { link: "https://aaronrs2002.github.io/texas-holdem/?" + gaParam + "theme=", game: "Poker" },
+    { link: "https://aaronrs2002.github.io/bingo/?" + gaParam + "theme=", game: "Bingo" },
+    { link: "https://aaronrs2002.github.io/javascript-slot-machine/?" + gaParam + "theme=", game: "Slots" },
+    { link: "https://aaronrs2002.github.io/word-game/?" + gaParam + "theme=", game: "WordFun" },
+    { link: "https://aaronrs2002.github.io/battleship/?" + gaParam + "theme=", game: "Battleship" }
+];
 
 for (let i = 0; i < themesList.length; i++) {
     themeOptions = themeOptions + "<option value='" + themesList[i].toLocaleLowerCase() + "'>Theme: <span class='capitalize'>" + themesList[i] + "</span></option>";

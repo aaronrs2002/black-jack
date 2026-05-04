@@ -39,7 +39,7 @@ const gameLinks = [
     { link: "https://aaronrs2002.github.io/black-jack/?" + gaParam + "theme=", game: "21" },
     { link: "https://aaronrs2002.github.io/texas-holdem/?" + gaParam + "theme=", game: "Poker" },
     { link: "https://aaronrs2002.github.io/bingo/?" + gaParam + "theme=", game: "Bingo" },
-    { link: "https://aaronrs2002.github.io/javascript-slot-machine/?" + gaParam + "theme=", game: "Slots/Craps" },
+    { link: "https://aaronrs2002.github.io/javascript-slot-machine/?" + gaParam + "theme=", game: "Slots&Craps" },
     { link: "https://aaronrs2002.github.io/word-game/?" + gaParam + "theme=", game: "Trivia" },
     { link: "https://aaronrs2002.github.io/battleship/?" + gaParam + "theme=", game: "Battleship" }
 ];

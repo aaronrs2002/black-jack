@@ -27,7 +27,7 @@ const themesList = ["Spacelab", "United", "Slate", "Cerulean", "Darkly", "Litera
 let chosenTheme;
 let url = window.location;
 let themeVal = {};
-let themeOptions = "<option value='default'>Select Theme</option>";
+let themeOptions = "<option value='default'>Theme</option>";
 let gaParam = "";
 if (url.toString().indexOf("exclude") !== -1) {
     gaParam = "exclude=true&";
@@ -111,7 +111,7 @@ if (localStorage.getItem("theme")) {
     setGameLinks("spacelab");
     localStorage.setItem("theme", "spacelab");
 }
-document.querySelector("#themes option:first-child").innerHTML = "Selected theme: " + tempTheme;
+document.querySelector("#themes option:first-child").innerHTML = "Theme: " + tempTheme;
 //END THEMES
 
 

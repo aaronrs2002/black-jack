@@ -17,7 +17,7 @@ body {
 
 body.wLogo:after {
     content: "";
-    background: linear-gradient(to top, rgb(47, 61, 47), #f8f8f8);
+    /* background: linear-gradient(to top, rgb(47, 61, 47), #f8f8f8);*/
     position: fixed;
     z-index: -1;
 
@@ -32,6 +32,11 @@ body.wLogo:after {
 
     filter: grayscale(100%);
     opacity: .2;
+
+}
+
+body.wLogo {
+    background: linear-gradient(to top, rgb(47, 61, 47), #f8f8f8);
 
 }
 

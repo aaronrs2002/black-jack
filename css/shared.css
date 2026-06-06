@@ -37,6 +37,7 @@ body.wLogo:after {
 
 body.wLogo {
     background: linear-gradient(to top, rgb(47, 61, 47), #f8f8f8);
+    background-repeat: no-repeat;
 
 }
 

@@ -240,3 +240,21 @@ function toggle(element) {
 }
 
 /*END GLOBAL TOGGLE FUNCTION*/
+
+
+
+
+function addExclude(link) {
+    let url = window.location;
+    if (url.toString().indexOf("exclude") !== -1) {
+        if (url.toString().indexOf("?") !== -1) {
+            window.location.href = link + "?exclude=true&";
+        } else {
+            window.location.href = link + "&exclude=true&";
+        }
+
+    } else {
+        window.location = link;
+    }
+
+}

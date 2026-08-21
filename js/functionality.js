@@ -162,6 +162,8 @@ function deal(playerBet) {
     confirmations = [];
     document.querySelector("#split0").innerHTML = "";
     document.querySelector("#split1").innerHTML = "";
+    document.querySelector("button[alt='doubleD-split0']").disabled = false;
+    document.querySelector("button[alt='doubleD-split1']").disabled = false;
     [].forEach.call(document.querySelectorAll('.dealAmt'), function (e) {
         e.classList.remove('active');
         e.disabled = true;
@@ -170,6 +172,7 @@ function deal(playerBet) {
     document.querySelector(".dealAmt[alt='" + playerBet + "']").classList.add("active");
     bet = playerBet;
     document.getElementById("betTarget").innerHTML = "Bet: $" + bet;
+    document.getElementById("betTarget").dataset.bet = playerBet;
     /*START RESET*/
     /*START DEALER VARIABLES*/
     dealerCards = [];
@@ -237,10 +240,16 @@ function deal(playerBet) {
 }
 
 function stay(whichHand) {    //START STAY()
+
+
+
+
+
     if (confirmations.indexOf(whichHand) === -1 && splitActive === true) {
         confirmations.push(whichHand);
         document.querySelector("[alt='hit-" + whichHand + "']").disabled = true;
         document.querySelector("[alt='stay-" + whichHand + "']").disabled = true;
+        document.querySelector("button[alt='doubleD-" + whichHand + "']").disabled = true;
     }
     if (confirmations.length === 2 || splitActive === false) {
         let tempMessage = "DEFAULT";
@@ -346,11 +355,12 @@ function stay(whichHand) {    //START STAY()
     }//end if/else
 }
 
-function hit(whichHand) {
+function hit(DD, whichHand) {
     playSound(hitSound);
     document.getElementById("dealerTotal").innerHTML = dealerTotal;
     document.querySelector("button[alt='split']").disabled = true;
     document.querySelector("button[alt='doubleD']").disabled = true;
+    console.log("splitActive: " + splitActive)
     if (splitActive === false) {
         let randomNum = Math.floor(Math.random() * cards.length);
         playerCards.push(cards[randomNum]);
@@ -372,7 +382,12 @@ function hit(whichHand) {
         }
 
     } else {
+
+
+        console.log("DD: " + DD + " - whichHand: " + whichHand + " - splitActive: " + splitActive);
         if (whichHand === "startSplit") {
+
+            console.log("whichHand: " + whichHand);
             const tempNum0 = Math.floor(Math.random() * cards.length);
             const tempNum1 = Math.floor(Math.random() * cards.length);
             let preHTML0 = document.getElementById("split0").innerHTML;
@@ -387,8 +402,13 @@ function hit(whichHand) {
             splitCards1.push(cards[tempNum1]);
             document.getElementById("playerTotal").innerHTML = playerTotal0 + " - " + playerTotal1;
         }
+
+
+
+
         //NEXT MOVE FOR SPLIT
         if (whichHand === "split0") {
+            document.querySelector("button[alt='doubleD-split0']").disabled = true;
             let split0Html = document.getElementById("split0").innerHTML
             const tempRandomCard = Math.floor(Math.random() * cards.length);
             let tempNew = split0Html + "<div data-player='1' class='card " + cards[tempRandomCard].title + "'></div>";
@@ -400,11 +420,17 @@ function hit(whichHand) {
             document.getElementById("playerTotal").innerHTML = playerTotal0 + " - " + playerTotal1;
             if (playerTotal0 > 21) {
                 document.querySelector("[alt='hit-split0']").disabled = true;
+
                 stay('split0');
             }
             splitArr[0] = checkAces(splitCards0);
+            if (DD === "split0") {
+
+                stay("split0");
+            }
         }
         if (whichHand === "split1") {
+            document.querySelector("button[alt='doubleD-split1']").disabled = true;
             let split1Html = document.getElementById("split1").innerHTML
             const tempRandomCard = Math.floor(Math.random() * cards.length);
             let tepNew = split1Html + "<div data-player='1' class='card " + cards[tempRandomCard].title + "'></div>";
@@ -416,9 +442,15 @@ function hit(whichHand) {
             document.getElementById("playerTotal").innerHTML = playerTotal0 + " - " + playerTotal1;
             if (playerTotal1 > 21) {
                 document.querySelector("[alt='hit-split1']").disabled = true;
+
                 stay('split1');
             }
             splitArr[0] = checkAces(splitCards0);
+
+            if (DD === "split1") {
+
+                stay("split1");
+            }
         }
     }
 }
@@ -433,10 +465,40 @@ function split() {
     splitCards0.push(playerCards[0])
     document.getElementById("split1").innerHTML = "<div data-player='0' class='card " + playerCards[1].title + "'></div>";
     splitCards1.push(playerCards[1])
-    hit("startSplit");
+    hit("default", "startSplit");
 }
 
-function doubleD() {
-    bet = bet + bet;
-    hit("oneHitOnly");
+function doubleD(whichDD) {
+    let originalBet = Number(document.getElementById("betTarget").dataset.bet); console.log("bet: " + bet + " - originalBet: " + originalBet);
+    bet = originalBet + originalBet;
+    console.log("whichDD: " + whichDD);
+    if (whichDD === "default") {
+
+        hit("default", "oneHitOnly");
+
+    }
+
+    if (whichDD === "split0") {
+        document.querySelector("button[alt='doubleD-split0']").disabled = true;
+        hit("split0", "split0");
+
+
+    }
+
+    if (whichDD === "split1") {
+        document.querySelector("button[alt='doubleD-split1']").disabled = true;
+
+        hit("split1", "split1");
+
+    }
+
+    /*
+let playerTotal0 = 0;
+let playerTotal1 = 0;
+
+    */
+
+    console.log("playerTotal0: " + playerTotal0 + " - playerTotal1: " + playerTotal1);
+
+
 }

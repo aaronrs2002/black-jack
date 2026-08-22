@@ -50,6 +50,9 @@ function enableBts() {
 }
 
 function showAlert(status, message, type) {
+    if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) {
+        playerMoney = Number(localStorage.getItem("balance"));
+    }
     document.getElementById("playBts").classList.add("hide");
     if (message === "default") {
         document.getElementById("status").classList.add("hide");

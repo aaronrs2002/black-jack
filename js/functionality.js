@@ -4,6 +4,8 @@ localStorage.setItem("cards", JSON.stringify(cards));
 const originalCards = cards;
 //SPLIT CARDS
 let splitActive = false;
+let split0DD = false;
+let split1DD = false;
 let confirmations = [];
 let splitArr = [0, 0];
 let playerTotal0 = 0;
@@ -174,6 +176,8 @@ function deal(playerBet) {
     document.querySelector("#split1").innerHTML = "";
     document.querySelector("button[alt='doubleD-split0']").disabled = false;
     document.querySelector("button[alt='doubleD-split1']").disabled = false;
+    split0DD = false;
+    split1DD = false;
     [].forEach.call(document.querySelectorAll('.dealAmt'), function (e) {
         e.classList.remove('active');
         e.disabled = true;
@@ -291,6 +295,9 @@ function stay(whichHand) {    //START STAY()
     }
     if (splitActive === true && confirmations.length === 2) {
 
+        let currentBet = Number(document.getElementById("betTarget").dataset.bet);
+        bet = currentBet;
+
         let splitArr = [Number(playerTotal0), Number(playerTotal1)];
         dealerTotal = checkAces(dealerCards);
         while (dealerTotal <= 16 && dealerTotal <= 21) {
@@ -305,7 +312,18 @@ function stay(whichHand) {    //START STAY()
         }
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] <= 21) {
             showAlert("split", " YOU WON. DEALER BUSTED!", "alert-success");
-            playerMoney = (playerMoney + bet + bet);
+            let bet0 = currentBet;
+            if (split0DD) {
+                bet0 = currentBet + currentBet;
+                console.log("adding up split0DD bet: " + bet);
+            }
+            let bet1 = currentBet;
+            if (split1DD) {
+                bet = currentBet + currentBet;
+                console.log("adding up split1DD bet: " + bet);
+            }
+
+            playerMoney = (playerMoney + bet0 + bet1);
         }
         if (dealerTotal > 21 && splitArr[0] > 21 && splitArr[1] <= 21) {/*you broke even playerMoney stays the same*/
             showAlert("split", " YOU BUSTED HAND ONE THEN WON HAND 2. DEALER BUSTED!", "alert-success");
@@ -316,6 +334,36 @@ function stay(whichHand) {    //START STAY()
 
         if (dealerTotal <= 21) {
             for (let i = 0; i < splitArr.length; i++) {
+
+
+
+                if (i === 0) {
+
+                    if (split0DD) {
+                        bet = currentBet + currentBet;
+                        console.log("adding up split0DD bet: " + bet);
+                    } else {
+                        bet = currentBet;
+                        console.log("NOT DOUBLED split0DD bet: " + bet);
+                    }
+
+                }
+
+
+                if (i === 1) {
+                    if (split1DD) {
+                        bet = currentBet + currentBet;
+                        console.log("adding up split1DD bet: " + bet);
+                    } else {
+                        bet = currentBet;
+                        console.log("NOT DOUBLED split1DD bet: " + bet);
+                    }
+
+
+                }
+
+
+
                 if (dealerTotal < splitArr[i] && splitArr[i] <= 21) {
                     playerMoney = (playerMoney + bet);
                     splitMessage = splitMessage + " YOU WON HAND " + (i + 1) + " $+" + bet + " ";
@@ -480,16 +528,20 @@ function split() {
 
 function doubleD(whichDD) {
     let originalBet = Number(document.getElementById("betTarget").dataset.bet); console.log("bet: " + bet + " - originalBet: " + originalBet);
-    bet = originalBet + originalBet;
+
     console.log("whichDD: " + whichDD);
     if (whichDD === "default") {
 
-        hit("default", "oneHitOnly");
 
+        bet = bet + bet;
+        hit("default", "oneHitOnly");
     }
 
     if (whichDD === "split0") {
         document.querySelector("button[alt='doubleD-split0']").disabled = true;
+        bet = originalBet + originalBet;
+        split0DD = true;
+
         hit("split0", "split0");
 
 
@@ -497,8 +549,10 @@ function doubleD(whichDD) {
 
     if (whichDD === "split1") {
         document.querySelector("button[alt='doubleD-split1']").disabled = true;
-
+        bet = originalBet + originalBet;
+        split1DD = true;
         hit("split1", "split1");
+
 
     }
 

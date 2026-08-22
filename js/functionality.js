@@ -28,6 +28,7 @@ if (localStorage.getItem("balance") && Number(localStorage.getItem("balance"))) 
 document.querySelector("#playerMoney").innerHTML = playerMoney;
 let bet = 0;
 function setPlayerMoney(passPlayerMoney, status, bet) {
+    console.log("playerMoney: " + playerMoney + "BET: " + bet + " - status: " + status);
     document.getElementById("playerMoney").innerHTML = passPlayerMoney;
     document.querySelector("#playerMoney").innerHTML = passPlayerMoney;/*SAFARI BUG NEEDS BOTH*/
     localStorage.setItem("balance", passPlayerMoney);
@@ -36,6 +37,7 @@ function setPlayerMoney(passPlayerMoney, status, bet) {
         if (status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0 || status.indexOf("win") === 0 || status.indexOf("lose") === 0) {
             document.getElementById("lostWon").innerHTML = ((status.indexOf("YOU") === 0 || status.indexOf("black-jack") === 0) ? "<label>" : "<label>You ") + status + " $" + bet + "</label>";
         } else {
+
             status = status.replace("split", ("TOTAL BET: $" + bet))
             document.getElementById("lostWon").innerHTML = "<label class='text-uppercase'>" + status + "</label>";
         }
@@ -256,7 +258,7 @@ function deal(playerBet) {
 function stay(whichHand) {    //START STAY()
 
 
-
+    let currentBet = Number(document.getElementById("betTarget").dataset.bet);
 
 
     if (confirmations.indexOf(whichHand) === -1 && splitActive === true) {
@@ -295,7 +297,7 @@ function stay(whichHand) {    //START STAY()
     }
     if (splitActive === true && confirmations.length === 2) {
 
-        let currentBet = Number(document.getElementById("betTarget").dataset.bet);
+
         bet = currentBet;
 
         let splitArr = [Number(playerTotal0), Number(playerTotal1)];
@@ -306,9 +308,11 @@ function stay(whichHand) {    //START STAY()
         let splitMessage = "";
         if (splitCards0.length === 2 && splitArr[0] === 21) {
             playerMoney = (playerMoney + (bet * .5));
+            setPlayerMoney(playerMoney, splitMessage, bet);
         }
         if (splitCards1.length === 2 && splitArr[1] === 21) {
             playerMoney = (playerMoney + (bet * .5));
+            setPlayerMoney(playerMoney, splitMessage, bet);
         }
         if (dealerTotal > 21 && splitArr[0] <= 21 && splitArr[1] <= 21) {
             showAlert("split", " YOU WON. DEALER BUSTED!", "alert-success");
@@ -319,11 +323,13 @@ function stay(whichHand) {    //START STAY()
             }
             let bet1 = currentBet;
             if (split1DD) {
-                bet = currentBet + currentBet;
+                bet1 = currentBet + currentBet;
                 console.log("adding up split1DD bet: " + bet);
             }
 
             playerMoney = (playerMoney + bet0 + bet1);
+            console.log("playerMoney: " + playerMoney + "BET0: " + bet0 + " bet1: " + bet1);
+            setPlayerMoney(playerMoney, splitMessage, bet);
         }
         if (dealerTotal > 21 && splitArr[0] > 21 && splitArr[1] <= 21) {/*you broke even playerMoney stays the same*/
             showAlert("split", " YOU BUSTED HAND ONE THEN WON HAND 2. DEALER BUSTED!", "alert-success");
@@ -376,15 +382,34 @@ function stay(whichHand) {    //START STAY()
                     splitMessage = splitMessage + " YOU PUSHED HAND " + (i + 1) + " ";
                 }
 
+                console.log("playerMoney: " + playerMoney + "BET: " + bet);
+                setPlayerMoney(playerMoney, splitMessage, bet);
             }
             showAlert("split", splitMessage, "alert-primary");
+
         }
         else if (splitArr[0] > 21 && splitArr[1] > 21 && splitMessage.length === 0) {
             showAlert("split", " YOU BUSTED BOTH HANDS!", "alert-danger");
-            bet = bet + bet;
-            playerMoney = (playerMoney - bet);
+
+            let bet0 = currentBet;
+            if (split0DD) {
+                bet0 = currentBet + currentBet;
+                console.log("adding up split0DD bet: " + bet);
+            }
+            let bet1 = currentBet;
+            if (split1DD) {
+                bet1 = currentBet + currentBet;
+                console.log("adding up split1DD bet: " + bet);
+            }
+
+            playerMoney = (playerMoney + bet0 + bet1);
+            console.log("playerMoney: " + playerMoney + "BET0: " + bet0 + " bet1: " + bet1);
+
+
+            setPlayerMoney(playerMoney, splitMessage, bet);
+            console.log("playerMoney: " + playerMoney + " splitMessage: " + splitMessage + " bet:  " + bet)
         }
-        setPlayerMoney(playerMoney, splitMessage, bet);
+
 
     }
     if (splitActive === false) {

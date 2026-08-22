@@ -134,7 +134,6 @@ function removeCards(dealerCards, playerCards) {
 
 function ckInsurance(card1, card2) {
     setPlayerMoney(playerMoney - 5, null, null);
-    bet = bet + 5;
     if ((card1 + card2) === 21) {
         document.querySelector("[data-dealer='0']").classList.remove("hiddenDealerCard");
         document.querySelector("[data-dealer='0']").classList.add(dealerCards[0].title);

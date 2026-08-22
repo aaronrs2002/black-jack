@@ -470,7 +470,7 @@ function split() {
 
 function doubleD(whichDD) {
     let originalBet = Number(document.getElementById("betTarget").dataset.bet); console.log("bet: " + bet + " - originalBet: " + originalBet);
-    bet = originalBet + originalBet;
+    bet = bet + originalBet;
     console.log("whichDD: " + whichDD);
     if (whichDD === "default") {
 

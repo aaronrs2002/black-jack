@@ -100,7 +100,18 @@ function showAlert(status, message, type) {
 
 
     } else {
-        setPlayerMoney(playerMoney, status, (bet * 2));
+
+        let originalBet = Number(document.getElementById("betTarget").dataset.bet);
+
+        let splitBet = (originalBet * 2);
+        if (split0DD) {
+            splitBet = splitBet + originalBet;
+        }
+        if (split1DD) {
+            splitBet = splitBet + originalBet;
+        }
+
+        setPlayerMoney(playerMoney, status, splitBet);
     }
     document.querySelector("button[alt='split']").disabled = false;
     document.querySelector("button[alt='doubleD']").disabled = false;

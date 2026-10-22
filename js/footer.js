@@ -7,6 +7,8 @@ if (localStorage.getItem("highScore", highScore)) {
     highScore = Number(localStorage.getItem("highScore", highScore));
 }
 
+
+
 function ckHighScore() {
     let currentBalance = Number(localStorage.getItem("balance"));
     let highScore = Number(localStorage.getItem("highScore"));
@@ -68,6 +70,22 @@ function changeTheme() {
 
 }
 /*SPLIT PARAMS*/
+let taskListAvialable = false;
+if (url.toString().indexOf("taskDetails") !== -1) {
+    taskListAvialable = true;
+}
+let taskSubmission = {
+    details: "danger:12/25/2026",
+    finished: true,
+    startDate: "2026-11-19",
+    task: "check bug fix",
+    taskDetails: "I GOT ALL. NEW DATA THAT WE DON'T WANT TO DELETE!",
+    taskStatus: "on-hold"
+};
+
+
+
+let originalTaskList = [];
 (url + "?")
     .split("?")[1]
     .split("&")
@@ -95,15 +113,6 @@ function changeTheme() {
 
 
             /*START TASK PARAMETERS*/
-            let taskSubmission = {
-                details: "danger:12/25/2026",
-                finished: true,
-                startDate: "2026-11-19",
-                task: "check bug fix",
-                taskDetails: "I GOT ALL. NEW DATA THAT WE DON'T WANT TO DELETE!",
-                taskStatus: "on-hold"
-            }
-
 
 
 
@@ -124,64 +133,53 @@ function changeTheme() {
 
 
 
-            let buildTask = true;
-
             if (pair[0] === "details") {
 
                 taskSubmission.details = pair[1];
-            } else {
-                buildTask = false;
+
+                console.log("details: " + pair[1]);
             }
 
             if (pair[0] === "finished") {
 
                 taskSubmission.finished = pair[1];
-            } else {
-                buildTask = false;
+
+                console.log("finished: " + pair[1]);
             }
 
 
             if (pair[0] === "startDate") {
 
                 taskSubmission.startDate = pair[1];
-            } else {
-                buildTask = false;
+
+                console.log("startDate: " + pair[1]);
             }
 
             if (pair[0] === "task") {
 
                 taskSubmission.task = pair[1];
-            } else {
-                buildTask = false;
+
+                console.log("task: " + pair[1]);
             }
 
             if (pair[0] === "taskDetails") {
 
                 taskSubmission.taskDetails = pair[1];
-            } else {
-                buildTask = false;
+
+                console.log("taskDetails: " + pair[1]);
             }
 
             if (pair[0] === "taskStatus") {
 
                 taskSubmission.taskStatus = pair[1];
-            } else {
-                buildTask = false;
+
+                console.log("taskStatus: " + pair[1]);
             }
 
-            if (buildTask) {
 
-                if (localStorage.getItem("taskList")) {
-                    let originalTaskList = JSON.parse(localStorage.getItem("taskList"));
 
-                    originalTaskList = [...originalTaskList, taskSubmission];
-                    localStorage.setItem("taskList", JSON.stringify(originalTaskList));
 
-                } else {
-                    localStorage.setItem("taskList", JSON.stringify(taskSubmission));
-                }
 
-            }
 
 
 
@@ -189,6 +187,28 @@ function changeTheme() {
         }
     });
 
+console.log("taskListAvialable: " + taskListAvialable)
+if (taskListAvialable) {
+    if (localStorage.getItem("taskList")) {
+
+        try {
+            originalTaskList = JSON.parse(localStorage.getItem("taskList"));
+
+            originalTaskList = [...originalTaskList, taskSubmission];
+            localStorage.setItem("taskList", JSON.stringify(originalTaskList));
+        } catch (error) {
+            console.log("t6asklist was nbot there");
+            localStorage.setItem("taskList", JSON.stringify(taskSubmission));
+        }
+
+
+
+
+    } else {
+        localStorage.setItem("taskList", JSON.stringify(taskSubmission));
+    }
+
+}
 let encodedURL = "https://aaronrs2002.github.io/task-master/?exclude=true&" + encodeURIComponent("details=success=02/25/2027&finished=false&startDate=2027-02-19&task=submit parameters via url&taskDetails=What's love got to do with it asked Tina Turner&taskStatus=in-progress&");
 console.log("encodedURL: " + encodedURL);
 let tempTheme = localStorage.getItem("theme");

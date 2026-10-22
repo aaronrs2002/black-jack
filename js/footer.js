@@ -91,8 +91,106 @@ function changeTheme() {
                 localStorage.setItem("ytkey", pair[1].replace("#", ""));
 
             }
+
+
+
+            /*START TASK PARAMETERS*/
+            let taskSubmission = {
+                details: "danger:12/25/2026",
+                finished: true,
+                startDate: "2026-11-19",
+                task: "check bug fix",
+                taskDetails: "I GOT ALL. NEW DATA THAT WE DON'T WANT TO DELETE!",
+                taskStatus: "on-hold"
+            }
+
+
+
+
+
+            // https://aaronrs2002.github.io/task-master/?exclude=true&details=success:02/25/2027&finished=false&startDate=2027-02-19&task=submit parameters via url&taskDetails=What's love got to do with it asked Tina Turner&taskStatus=in-progress&
+
+            /*details: "danger:12/25/2026",
+                 finished: true,
+                     startDate: "2026-11-19",
+                         task: "check bug fix",
+                             taskDetails: "I GOT ALL. NEW DATA THAT WE DON'T WANT TO DELETE!",
+                                 taskStatus: "on-hold"*/
+
+
+
+
+
+
+
+
+            let buildTask = true;
+
+            if (pair[0] === "details") {
+
+                taskSubmission.details = pair[1];
+            } else {
+                buildTask = false;
+            }
+
+            if (pair[0] === "finished") {
+
+                taskSubmission.finished = pair[1];
+            } else {
+                buildTask = false;
+            }
+
+
+            if (pair[0] === "startDate") {
+
+                taskSubmission.startDate = pair[1];
+            } else {
+                buildTask = false;
+            }
+
+            if (pair[0] === "task") {
+
+                taskSubmission.task = pair[1];
+            } else {
+                buildTask = false;
+            }
+
+            if (pair[0] === "taskDetails") {
+
+                taskSubmission.taskDetails = pair[1];
+            } else {
+                buildTask = false;
+            }
+
+            if (pair[0] === "taskStatus") {
+
+                taskSubmission.taskStatus = pair[1];
+            } else {
+                buildTask = false;
+            }
+
+            if (buildTask) {
+
+                if (localStorage.getItem("taskList")) {
+                    let originalTaskList = JSON.parse(localStorage.getItem("taskList"));
+
+                    originalTaskList = [...originalTaskList, taskSubmission];
+                    localStorage.setItem("taskList", JSON.stringify(originalTaskList));
+
+                } else {
+                    localStorage.setItem("taskList", JSON.stringify(taskSubmission));
+                }
+
+            }
+
+
+
+
         }
     });
+
+let encodedURL = "https://aaronrs2002.github.io/task-master/?exclude=true&" + encodeURIComponent("details=success=02/25/2027&finished=false&startDate=2027-02-19&task=submit parameters via url&taskDetails=What's love got to do with it asked Tina Turner&taskStatus=in-progress&");
+console.log("encodedURL: " + encodedURL);
 let tempTheme = localStorage.getItem("theme");
 if (localStorage.getItem("theme")) {
 
@@ -113,6 +211,11 @@ if (localStorage.getItem("theme")) {
 }
 document.querySelector("#themes option:first-child").innerHTML = "Theme: " + tempTheme;
 //END THEMES
+
+
+/*build taskObj start*/
+/*[name='updateWord'], select[name=name="taskStatus"], select[name='updateDefinition'], select[name='startYear'], select[name='startMonth'],
+ select[name='startDay'], textarea[name='taskDetails'], select[name='endYear'], select[name='endtMonth'], select[name='endDay']*/
 
 
 

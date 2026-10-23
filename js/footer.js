@@ -74,14 +74,14 @@ let taskListAvialable = false;
 if (url.toString().indexOf("taskDetails") !== -1) {
     taskListAvialable = true;
 }
-let taskSubmission = [{
+let taskSubmission = {
     details: "danger:12/25/2026",
     finished: true,
     startDate: "2026-11-19",
     task: "check bug fix",
     taskDetails: "I GOT ALL. NEW DATA THAT WE DON'T WANT TO DELETE!",
     taskStatus: "on-hold"
-}];
+};
 
 
 
@@ -117,14 +117,14 @@ let originalTaskList = [];
 
             if (pair[0] === "details") {
 
-                taskSubmission[0].details = pair[1];
+                taskSubmission.details = pair[1];
 
                 console.log("details: " + pair[1]);
             }
 
             if (pair[0] === "finished") {
 
-                taskSubmission[0].finished = pair[1];
+                taskSubmission.finished = pair[1];
 
                 console.log("finished: " + pair[1]);
             }
@@ -132,28 +132,28 @@ let originalTaskList = [];
 
             if (pair[0] === "startDate") {
 
-                taskSubmission[0].startDate = pair[1];
+                taskSubmission.startDate = pair[1];
 
                 console.log("startDate: " + pair[1]);
             }
 
             if (pair[0] === "task") {
 
-                taskSubmission[0].task = pair[1];
+                taskSubmission.task = pair[1];
 
                 console.log("task: " + pair[1]);
             }
 
             if (pair[0] === "taskDetails") {
 
-                taskSubmission[0].taskDetails = pair[1];
+                taskSubmission.taskDetails = pair[1];
 
                 console.log("taskDetails: " + pair[1]);
             }
 
             if (pair[0] === "taskStatus") {
 
-                taskSubmission[0].taskStatus = pair[1];
+                taskSubmission.taskStatus = pair[1];
 
                 console.log("taskStatus: " + pair[1]);
             }
